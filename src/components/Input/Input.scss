@@ -1,0 +1,51 @@
+/* Input Styles - START */
+
+@import '../../styles/variables.scss';
+
+.input-wrapper {
+  position: relative;
+  .input-field {
+    width: 100%;
+    padding: 1rem 0.75rem;
+    line-height: 1.25;
+    font-size: $regular;
+    border-radius: 4px;
+    color: $button-primary-green;
+    border: 1px solid currentColor;
+    &:focus {
+      padding-top: 1.625rem;
+      padding-bottom: 0.625rem;
+      border-color: #86b7fe;
+      outline: 0;
+      box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.2);
+    }
+  }
+  .input-field:focus ~ label {
+    opacity: 0.65;
+    transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
+  }
+  label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    padding: 1rem 0.75rem;
+    pointer-events: none;
+    border: 1px solid transparent;
+    color: $button-primary-green;
+    transform-origin: 0 0;
+    transition: opacity 0.1s ease-in-out, transform 0.1s ease-in-out;
+  }
+  &.active {
+    .input-field {
+      padding-top: 1.625rem;
+      padding-bottom: 0.625rem;
+    }
+    label {
+      opacity: 0.65;
+      transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
+    }
+  }
+}
+
+/* Button Styles - END */

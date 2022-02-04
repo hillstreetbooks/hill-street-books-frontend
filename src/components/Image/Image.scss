@@ -1,0 +1,38 @@
+/* Image Styles - START */
+
+@import '../../styles/variables.scss';
+
+.image-wrapper {
+  width: 100%;
+  height: 100%;
+  .image {
+    width: 100%;
+    height: auto;
+  }
+  .loader-wrapper {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .loader {
+      border: 7px solid $black;
+      border-top: 7px solid $green-primary;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      animation: spin 1.25s linear infinite;
+    }
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Image Styles - END */
