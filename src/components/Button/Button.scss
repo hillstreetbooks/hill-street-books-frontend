@@ -1,0 +1,21 @@
+/* Button Styles - START */
+
+@import '../../styles/variables.scss';
+
+.button {
+  width: 100%;
+  padding: 1rem 2rem;
+  background-color: inherit;
+  color: $button-primary-green;
+  font-size: $regular15;
+  font-family: $font-karla;
+  letter-spacing: 0.75px;
+  border: 1px solid currentColor;
+  border-radius: 40px;
+  cursor: pointer;
+  &:hover {
+    box-shadow: 0 0 0 0.1rem currentColor;
+  }
+}
+
+/* Button Styles - END */
