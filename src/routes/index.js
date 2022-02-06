@@ -1,12 +1,13 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Footer } from '../components';
+import { Footer, Header } from '../components';
 import { Login, Registration } from '../views';
 import { ROUTES } from '../constants/Strings';
 
 const routes = () => {
   return (
     <BrowserRouter>
+      <Header />
       <Routes>
         <Route path={ROUTES.LOGIN} element={<Login />} />
         <Route path={ROUTES.REGISTRATION} element={<Registration />} />

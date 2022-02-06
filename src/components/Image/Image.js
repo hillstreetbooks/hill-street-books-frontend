@@ -16,7 +16,7 @@ const Image = ({ source, altText, fallbackImage }) => {
   };
 
   return (
-    <div className="image-wrapper">
+    <>
       {!load ? (
         <div className="loader-wrapper">
           <div className="loader"></div>
@@ -30,7 +30,7 @@ const Image = ({ source, altText, fallbackImage }) => {
         onLoad={handleImageLoad}
         onError={addDefaultSrc}
       />
-    </div>
+    </>
   );
 };
 
