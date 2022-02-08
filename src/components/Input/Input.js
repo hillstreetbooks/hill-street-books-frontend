@@ -4,6 +4,8 @@ import './Input.scss';
 
 const Input = ({
   label,
+  hasError,
+  errorMessage,
   type,
   name,
   disabled,
@@ -27,12 +29,25 @@ const Input = ({
         onBlur={handleBlur}
       />
       <label htmlFor="username">{label}</label>
+      {hasError ? (
+        <div className="error-message-wrapper">
+          {errorMessage.map((error, index) => {
+            return (
+              <div key={index} className="error-message">
+                {error}
+              </div>
+            );
+          })}
+        </div>
+      ) : null}
     </div>
   );
 };
 
 Input.defaultProps = {
   label: 'Username',
+  hasError: false,
+  errorMessage: ['Please fill this field'],
   type: 'text',
   name: 'username',
   disabled: false,
@@ -53,6 +68,8 @@ Input.defaultProps = {
 
 Input.propTypes = {
   label: PropTypes.string,
+  hasError: PropTypes.bool,
+  errorMessage: PropTypes.array,
   type: PropTypes.string,
   name: PropTypes.string,
   disabled: PropTypes.bool,
