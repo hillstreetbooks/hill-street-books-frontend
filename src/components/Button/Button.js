@@ -4,7 +4,12 @@ import './Button.scss';
 
 const Button = ({ buttonText, disabled, handleClick }) => {
   return (
-    <button className="button" onClick={handleClick} disabled={disabled}>
+    <button
+      type="submit"
+      className="button"
+      onClick={handleClick}
+      disabled={disabled}
+    >
       {buttonText}
     </button>
   );

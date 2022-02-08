@@ -1,11 +1,8 @@
 /* Footer Styles - START */
 
-@import '../../styles/variables.scss';
+@import '../../../styles/variables.scss';
 
 .footer-wrapper {
-  position: absolute;
-  bottom: 0;
-  left: 0;
   padding: 3rem 6rem;
   background-color: $green-secondary;
   .section-wrapper {

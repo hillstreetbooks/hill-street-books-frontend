@@ -1,9 +1,9 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import Image from '../Image/Image';
-import UserBadge from '../../assets/user-badge-two.png';
-import { UserContext } from '../../App';
+import Image from '../../Image/Image';
+import UserBadge from '../../../assets/user-badge-two.png';
+import { UserContext } from '../../../App';
 import './Header.scss';
 
 const Header = ({ showProfile }) => {
