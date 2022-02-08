@@ -4,6 +4,7 @@ import { Form } from '../../components';
 import { REGISTRATION } from '../../constants/Strings';
 import RegistrationBanner from '../../assets/registration-banner.jpeg';
 import { useForm } from '../../hooks';
+import { AuthorService } from '../../services';
 import './Registration.scss';
 
 const Registration = () => {
@@ -23,6 +24,15 @@ const Registration = () => {
       };
     }
     setErrors(validationResult);
+    if (validationResult && Object.keys(validationResult).length === 0) {
+      AuthorService.registerAuthor(inputs)
+        .then((response) => {
+          alert(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   };
 
   const { inputs, handleInputChange, handleSubmit, validate } = useForm(
