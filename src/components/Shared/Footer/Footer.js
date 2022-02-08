@@ -1,6 +1,6 @@
 import React from 'react';
 import FooterItem from './FooterItem';
-import { FOOTER_CONTENT } from '../../constants/Strings';
+import { FOOTER_CONTENT } from '../../../constants/Strings';
 import './Footer.scss';
 
 const Footer = () => {
