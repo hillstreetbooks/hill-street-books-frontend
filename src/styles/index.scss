@@ -17,3 +17,17 @@ body {
   position: relative;
   min-height: 100vh;
 }
+
+@media only screen and (max-width: $tab-big) {
+  html,
+  body {
+    font-size: 11px;
+  }
+}
+
+@media only screen and (max-width: $mobile-big) {
+  html,
+  body {
+    font-size: 8px;
+  }
+}

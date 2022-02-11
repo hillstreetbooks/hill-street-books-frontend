@@ -13,12 +13,12 @@
     border-radius: 4px;
     color: $button-primary-green;
     border: 1px solid #ced4da;
+    padding-top: 1.625rem;
+    padding-bottom: 0.625rem;
     &:focus {
-      padding-top: 1.625rem;
-      padding-bottom: 0.625rem;
       border-color: #86b7fe;
       outline: 0;
-      //box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.2);
+      //box-shadow: 0 0 0.5rem 0.1rem rgba(87, 123, 70, 0.5);
     }
   }
   .input-field:focus ~ label {
