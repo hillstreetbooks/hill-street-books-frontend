@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { Form } from '../../components';
+import { Form, FormContent } from '../../components';
 import { REGISTRATION } from '../../constants/Strings';
-import RegistrationBanner from '../../assets/registration-banner.jpeg';
+import RegistrationBanner from '../../assets/reading-space.jpeg';
 import { useForm } from '../../hooks';
 import { AuthorService } from '../../services';
 import './Registration.scss';
@@ -43,14 +43,18 @@ const Registration = () => {
   return (
     <div className="registration-wrapper">
       <Form
-        inputs={inputs}
         image={RegistrationBanner}
-        handleClick={registerUser}
         content={REGISTRATION.CONTENT}
-        handleInputChange={handleInputChange}
         handleSubmit={handleSubmit}
-        errors={errors}
-      />
+      >
+        <FormContent
+          fields={REGISTRATION.CONTENT.fields}
+          values={inputs}
+          handleInputChange={handleInputChange}
+          errors={errors}
+          buttonText="Create"
+        ></FormContent>
+      </Form>
     </div>
   );
 };

@@ -1,17 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Input } from '../../components';
+import PropTypes from 'prop-types';
 import './Form.scss';
 
-const Form = ({
-  inputs,
-  image,
-  content,
-  handleInputChange,
-  handleSubmit,
-  errors
-}) => {
-  const { heading, subHeading, redirectText, redirectLink, fields } = content;
+const Form = ({ image, children, content, handleSubmit }) => {
+  const { heading, subHeading, redirectText, redirectLink } = content;
   return (
     <div className="form-wrapper">
       <div
@@ -23,26 +16,16 @@ const Form = ({
         <div className="sub-heading">
           {subHeading} <Link to={redirectLink}>{redirectText}</Link>
         </div>
-        <form onSubmit={handleSubmit}>
-          {fields.map((field, index) => {
-            return (
-              <Input
-                type={field.type}
-                name={field.name}
-                label={field.label}
-                value={inputs[field.name]}
-                hasError={errors[field.name]?.hasError || null}
-                errorMessage={errors[field.name]?.errorMessage || null}
-                key={index}
-                handleChange={handleInputChange}
-              />
-            );
-          })}
-          <Button buttonText="Create" />
-        </form>
+        <form onSubmit={handleSubmit}>{children}</form>
       </div>
     </div>
   );
+};
+
+Form.propTypes = {
+  image: PropTypes.string,
+  children: PropTypes.element,
+  content: PropTypes.object
 };
 
 export default Form;

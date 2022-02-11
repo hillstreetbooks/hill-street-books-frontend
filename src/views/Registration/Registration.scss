@@ -4,11 +4,13 @@
 
 .registration-wrapper {
   min-height: calc(100vh - 6rem);
-  display: flex;
   width: 100%;
-  justify-content: center;
-  align-items: center;
-  margin: 6rem 0;
+}
+
+@media only screen and (max-width: $tab-big) {
+  .registration-wrapper {
+    height: auto;
+  }
 }
 
 /* Registration Styles - END */
