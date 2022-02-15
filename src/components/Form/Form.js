@@ -1,16 +1,16 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { Image } from '../../components';
 import './Form.scss';
 
 const Form = ({ image, children, content, handleSubmit }) => {
   const { heading, subHeading, redirectText, redirectLink } = content;
   return (
     <div className="form-wrapper">
-      <div
-        className="form-image-wrapper"
-        style={{ backgroundImage: `url(${image})` }}
-      ></div>
+      <div className="form-image-wrapper">
+        <Image source={image} />
+      </div>
       <div className="form-content-wrapper">
         <div className="heading">{heading}</div>
         <div className="sub-heading">
@@ -28,4 +28,4 @@ Form.propTypes = {
   content: PropTypes.object
 };
 
-export default Form;
+export default memo(Form);

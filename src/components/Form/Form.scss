@@ -11,9 +11,16 @@
   background-color: $white;
   .form-image-wrapper {
     width: 50%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: 50%;
+    height: 100%;
+    overflow: hidden;
+    .loader-wrapper {
+      height: 100%;
+    }
+    .image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
   }
   .form-content-wrapper {
     width: 50%;
@@ -21,7 +28,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    padding: 6rem;
+    padding: 6rem 9rem;
     color: $green-tertiary;
     font-family: 'futura-pt';
     .heading {
