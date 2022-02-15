@@ -1,0 +1,104 @@
+/* Error Styles - START */
+
+@import '../../styles/variables.scss';
+
+#notfound {
+  position: relative;
+  height: 100vh;
+}
+
+#notfound .notfound {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.notfound {
+  max-width: 520px;
+  width: 100%;
+  line-height: 1.4;
+  text-align: center;
+  .notfound-404 {
+    position: relative;
+    height: 200px;
+    margin: 0px auto 20px;
+    z-index: -1;
+    h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 236px;
+      font-weight: 200;
+      margin: 0px;
+      color: $green-tertiary;
+      text-transform: uppercase;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+    }
+    h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 28px;
+      font-weight: 400;
+      text-transform: uppercase;
+      background-color: rgba(233, 239, 237, 0.75);
+      color: $green-primary;
+      padding: 10px 5px;
+      margin: auto;
+      display: inline-block;
+      position: absolute;
+      bottom: 0px;
+      left: 0;
+      right: 0;
+    }
+  }
+  a {
+    width: 100%;
+    padding: 1rem 2rem;
+    background-color: inherit;
+    color: $button-primary-green;
+    font-size: $regular15;
+    font-family: $font-karla;
+    letter-spacing: 0.75px;
+    border: 1px solid currentColor;
+    border-radius: 40px;
+    transition: box-shadow 0.2s ease-in-out;
+    text-decoration: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    &:hover {
+      box-shadow: 0 0 0 0.1rem currentColor;
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .notfound .notfound-404 h1 {
+    font-size: 120px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .notfound {
+    .notfound-404 {
+      height: 148px;
+      margin: 0px auto 10px;
+      h1 {
+        font-size: 86px;
+      }
+      h2 {
+        font-size: 16px;
+      }
+    }
+    a {
+      padding: 7px 15px;
+      font-size: 14px;
+    }
+  }
+}
+
+/* Error Styles - END */
