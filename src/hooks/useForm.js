@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import * as EmailValidator from 'email-validator';
-import { REGISTRATION } from '../constants/Strings';
 
 const useForm = (inputFields, callback) => {
   const [inputs, setInputs] = useState(inputFields);
@@ -33,18 +32,21 @@ const useForm = (inputFields, callback) => {
           hasError: true,
           errorMessage: [`This field cannot be empty`]
         };
-      }
-      else if (input === 'username' && !EmailValidator.validate(inputs.username)) {
+      } else if (
+        input === 'username' &&
+        !EmailValidator.validate(inputs.username)
+      ) {
         errors[input] = {
-              hasError: true,
-              errorMessage: [`Please enter a valid Email ID`]
-            };
-      }
-      else if (input === 'password' && !passwordRegex.test(inputs.password)) {
+          hasError: true,
+          errorMessage: [`Please enter a valid Email ID`]
+        };
+      } else if (input === 'password' && !passwordRegex.test(inputs.password)) {
         errors[input] = {
-              hasError: true,
-              errorMessage: REGISTRATION.PASSWORD_CONDITIONS
-            };
+          hasError: true,
+          errorMessage: [
+            `Password requirements are not met. Please hover (?) to check the requirements.`
+          ]
+        };
       }
     });
     return errors;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import PropTypes from 'prop-types';
 import { Button, Input } from '../../components';
 
@@ -19,6 +19,7 @@ const FormContent = ({
             name={field.name}
             label={field.label}
             value={values[field.name]}
+            hints={field.hints ? field.hints : []}
             hasError={errors[field.name]?.hasError || null}
             errorMessage={errors[field.name]?.errorMessage || null}
             key={index}
@@ -47,4 +48,4 @@ FormContent.propTypes = {
   buttonText: PropTypes.string
 };
 
-export default FormContent;
+export default memo(FormContent);

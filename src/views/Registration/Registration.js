@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Form, FormContent } from '../../components';
 import { REGISTRATION } from '../../constants/Strings';
@@ -59,4 +59,4 @@ const Registration = () => {
   );
 };
 
-export default Registration;
+export default memo(Registration);
