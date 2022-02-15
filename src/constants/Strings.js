@@ -9,7 +9,40 @@ export const ROUTES = {
 };
 
 export const API_ENDPOINTS = {
-  REGISTER_AUTHOR: '/register-author'
+  REGISTER_AUTHOR: '/register-author',
+  LOGIN: '/login'
+};
+
+export const LOGIN = {
+  FIELDS: {
+    username: '',
+    password: ''
+  },
+  CONTENT: {
+    heading: 'Welcome, Authors!',
+    subHeading: 'Want to be part of the site?',
+    redirectText: 'Register Here',
+    redirectLink: ROUTES.REGISTRATION,
+    fields: [
+      {
+        type: 'text',
+        name: 'username',
+        label: 'Username *'
+      },
+      {
+        type: 'password',
+        name: 'password',
+        label: 'Password *',
+        hints: [
+          'The password must contain at least 1 lowercase alphabetical character',
+          'The password must contain at least 1 uppercase alphabetical character',
+          'The password must contain at least 1 numeric character',
+          'The password must contain at least one special character',
+          'The password must be eight characters or longer'
+        ]
+      }
+    ]
+  }
 };
 
 export const REGISTRATION = {
@@ -19,18 +52,11 @@ export const REGISTRATION = {
     password: '',
     confirm_password: ''
   },
-  PASSWORD_CONDITIONS: [
-    'The password must contain at least 1 lowercase alphabetical character',
-    'The password must contain at least 1 uppercase alphabetical character',
-    'The password must contain at least 1 numeric character',
-    'The password must contain at least one special character',
-    'The password must be eight characters or longer'
-  ],
   CONTENT: {
     heading: 'Create An Account',
     subHeading: 'Already have an account?',
     redirectText: 'Sign In',
-    redirectLink: '/login',
+    redirectLink: ROUTES.LOGIN,
     fields: [
       {
         type: 'text',
@@ -45,7 +71,14 @@ export const REGISTRATION = {
       {
         type: 'password',
         name: 'password',
-        label: 'Password *'
+        label: 'Password *',
+        hints: [
+          'The password must contain at least 1 lowercase alphabetical character',
+          'The password must contain at least 1 uppercase alphabetical character',
+          'The password must contain at least 1 numeric character',
+          'The password must contain at least one special character',
+          'The password must be eight characters or longer'
+        ]
       },
       {
         type: 'password',
