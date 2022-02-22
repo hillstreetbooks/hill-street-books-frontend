@@ -8,15 +8,13 @@ export default class AuthorService {
    */
   static registerAuthor = async (author_details) => {
     try {
-      const { username, name, password } = author_details;
+      const { username, name, password, confirm_password } = author_details;
       const response = await Axios.post(API_ENDPOINTS.REGISTER_AUTHOR, {
-        user: {
-          username: username.toLowerCase(),
-          name,
-          password
-        }
+        username: username.toLowerCase(),
+        name,
+        password,
+        confirm_password
       });
-      console.log(response);
       return response.data;
     } catch (error) {
       console.error('Error - AuthorService -> registerAuthor : ', error);
@@ -27,19 +25,14 @@ export default class AuthorService {
    * Validates the author's credentials
    * @param login_details
    */
-  static login = async ({ username, password }) => {
+  static login = async ({ username, password, remainLoggedIn }) => {
     try {
       const response = await Axios.post(API_ENDPOINTS.LOGIN, {
-        user: {
-          username: username.toLowerCase(),
-          password
-        }
+        username: username.toLowerCase(),
+        password,
+        remainLoggedIn
       });
-      console.log(response);
-      return (
-        response.data ||
-        'Oops, Something went wrong! Please contact the administrator.'
-      );
+      return response.data;
     } catch (error) {
       console.error('Error - AuthorService -> login : ', error);
     }

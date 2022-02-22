@@ -2,6 +2,7 @@ import { faShopify } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope, faHome } from '@fortawesome/free-solid-svg-icons';
 
 export const ROUTES = {
+  AUTHOR_PAGE: '/author/:authorId',
   HOME: '/',
   LOGIN: '/login',
   REGISTRATION: '/registration',
@@ -32,14 +33,7 @@ export const LOGIN = {
       {
         type: 'password',
         name: 'password',
-        label: 'Password *',
-        hints: [
-          'The password must contain at least 1 lowercase alphabetical character',
-          'The password must contain at least 1 uppercase alphabetical character',
-          'The password must contain at least 1 numeric character',
-          'The password must contain at least one special character',
-          'The password must be eight characters or longer'
-        ]
+        label: 'Password *'
       }
     ]
   }
