@@ -13,8 +13,8 @@ const style = {
   transform: 'translate(-50%, -50%)',
   width: 400,
   bgcolor: 'background.paper',
-  border: '2px solid #000',
   boxShadow: 24,
+  borderRadius: 1,
   p: 4
 };
 
@@ -46,6 +46,7 @@ const PopupModal = ({ show, toggleVisibility, title, message }) => {
                   display: 'inline',
                   padding: '.25rem .5rem',
                   border: '1px solid black',
+                  borderRadius: '4px',
                   cursor: 'pointer'
                 }}
                 onClick={toggleVisibility}
