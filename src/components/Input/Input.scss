@@ -1,0 +1,121 @@
+/* Input Styles - START */
+
+@import '../../styles/variables.scss';
+
+.input-wrapper {
+  position: relative;
+  font-family: $font-karla;
+  .input-field {
+    width: 100%;
+    padding: 1rem 0.75rem;
+    line-height: 1.25;
+    font-size: $regular;
+    border-radius: 4px;
+    color: $button-primary-green;
+    border: 1px solid #ced4da;
+    padding-top: 1.625rem;
+    padding-bottom: 0.625rem;
+    &:focus {
+      border-color: #86b7fe;
+      outline: 0;
+      //box-shadow: 0 0 0.5rem 0.1rem rgba(87, 123, 70, 0.5);
+    }
+  }
+  .input-field:focus ~ .label-wrapper {
+    transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
+    .hints-wrapper {
+      display: flex;
+    }
+  }
+
+  .label-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+    padding: 1rem 0.75rem;
+    height: 100%;
+    transform-origin: 0 0;
+    transition: opacity 0.1s ease-in-out, transform 0.1s ease-in-out;
+    .hints-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 1rem;
+      height: 1rem;
+      font-size: 1rem;
+      border-radius: 50%;
+      background-color: $green-primary;
+      color: $white;
+      margin-left: 0.5rem;
+      cursor: pointer;
+      .hint-message-wrapper {
+        display: none;
+        width: 20rem;
+        position: absolute;
+        flex-direction: column;
+        background-color: $green-primary;
+        color: $green-secondary;
+        padding: 2rem 3rem;
+        border-radius: 1rem;
+        z-index: 3;
+        .hint-message {
+          &:not(:last-child) {
+            margin-bottom: 0.5rem;
+          }
+        }
+      }
+      &:hover {
+        .hint-message-wrapper {
+          display: flex;
+        }
+      }
+    }
+    label {
+      opacity: 0.65;
+      pointer-events: none;
+      border: 1px solid transparent;
+      color: $button-primary-green;
+    }
+  }
+
+  &.active {
+    .input-field {
+      padding-top: 1.625rem;
+      padding-bottom: 0.625rem;
+    }
+    .label-wrapper {
+      transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
+      label {
+        opacity: 0.5;
+      }
+    }
+  }
+}
+.error-message-wrapper {
+  padding: 0.5rem 0 0.5rem 0.25rem;
+  font-size: $regular15;
+  font-family: $font-karla;
+  align-self: flex-start;
+  animation: fadein 0.5s ease-in-out;
+  .error-message {
+    color: #dc3545;
+    &:not(:last-child) {
+      padding-bottom: 0.5rem;
+    }
+  }
+}
+
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Button Styles - END */

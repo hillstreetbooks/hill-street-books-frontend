@@ -1,0 +1,16 @@
+/* Login Styles - START */
+
+@import '../../styles/variables.scss';
+
+.login-wrapper {
+  height: calc(100vh - 6rem);
+  width: 100%;
+}
+
+@media only screen and (max-width: $tab-big) {
+  .login-wrapper {
+    height: auto;
+  }
+}
+
+/* Login Styles - END */

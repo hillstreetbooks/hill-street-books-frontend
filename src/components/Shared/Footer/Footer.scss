@@ -1,0 +1,58 @@
+/* Footer Styles - START */
+
+@import '../../../styles/variables.scss';
+
+.footer-wrapper {
+  padding: 3rem 6rem;
+  background-color: $green-secondary;
+  .section-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    .footer-item {
+      padding: 2rem;
+      letter-spacing: 0.5px;
+      line-height: 24px;
+      .title {
+        font-family: 'futura-pt';
+        font-size: 1.987rem;
+        color: $button-primary-green;
+        margin: 1rem 0;
+      }
+      .content {
+        font-family: $font-karla;
+        font-size: 1.14rem;
+        color: $green-tertiary;
+        text-decoration: none;
+        svg {
+          margin-right: 1rem;
+        }
+      }
+      &:first-child {
+        flex: 2;
+      }
+      &:not(:first-child) {
+        flex: 1;
+      }
+    }
+    &.copyright {
+      padding-top: 4rem;
+      font-size: $medium;
+      color: $green-tertiary;
+      font-family: $font-karla;
+      text-align: center;
+      justify-content: center;
+    }
+  }
+}
+
+@media only screen and (max-width: $tab-small) {
+  .footer-wrapper {
+    padding: 2rem;
+    .section-wrapper {
+      flex-direction: column;
+      .footer-item {
+      }
+    }
+  }
+}
+/* Footer Styles - END */
