@@ -34,6 +34,7 @@
     left: 0;
     display: flex;
     align-items: center;
+    pointer-events: none;
     padding: 1rem 0.75rem;
     height: 100%;
     transform-origin: 0 0;
@@ -45,9 +46,9 @@
       justify-content: center;
       width: 1rem;
       height: 1rem;
-      font-size: 0.7rem;
+      font-size: 1rem;
       border-radius: 50%;
-      background-color: $green-tertiary;
+      background-color: $green-primary;
       color: $white;
       margin-left: 0.5rem;
       cursor: pointer;
@@ -56,9 +57,9 @@
         width: 20rem;
         position: absolute;
         flex-direction: column;
-        background-color: $green-tertiary;
+        background-color: $green-primary;
         color: $green-secondary;
-        padding: 1.5rem;
+        padding: 2rem 3rem;
         border-radius: 1rem;
         z-index: 3;
         .hint-message {

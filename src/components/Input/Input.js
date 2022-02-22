@@ -35,15 +35,15 @@ const Input = ({
           {hints.length > 0 ? (
             <div className="hints-wrapper">
               <span className="hints">?</span>
-              <div className="hint-message-wrapper">
+              <ul className="hint-message-wrapper">
                 {hints.map((hint, index) => {
                   return (
-                    <div key={index} className="hint-message">
+                    <li key={index} className="hint-message">
                       {hint}
-                    </div>
+                    </li>
                   );
                 })}
-              </div>
+              </ul>
             </div>
           ) : null}
         </div>
