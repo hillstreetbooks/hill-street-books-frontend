@@ -1,9 +1,10 @@
-import React, { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { signOut } from '../../../store';
 import PropTypes from 'prop-types';
 import Image from '../../Image/Image';
 import UserBadge from '../../../assets/user-badge-two.png';
-import { UserContext } from '../../../App';
 import './Header.scss';
 
 const Header = ({ showProfile }) => {
@@ -11,15 +12,25 @@ const Header = ({ showProfile }) => {
     process.env.SHOPIFY_URL || 'https://hill-street-books.myshopify.com/';
   const [welcomeText, setWelcomeText] = useState('Sign In');
   const [menu, toggleMenu] = useState(false);
-  const user = useContext(UserContext);
   const navigate = useNavigate();
+  const userInfo = useSelector((state) => state.user.info);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (userInfo && userInfo?.name) setWelcomeText(`Hi ${userInfo.name}`);
+  }, [userInfo]);
 
   const handleMenu = () => {
-    if (user) {
+    if (userInfo && userInfo?.name) {
       toggleMenu(!menu);
     } else {
       navigate('/login');
     }
+  };
+
+  const handleSignOut = () => {
+    dispatch(signOut());
+    navigate('/login');
   };
 
   return (
@@ -35,7 +46,16 @@ const Header = ({ showProfile }) => {
             <Image fallbackImage={UserBadge} />
             <div className="details">{welcomeText}</div>
           </div>
-          {menu ? <div className="menu">{welcomeText}</div> : null}
+          {menu ? (
+            <div className="menu">
+              <Link className="menu-item" to="/profile">
+                View Profile
+              </Link>
+              <span className="menu-item" onClick={handleSignOut}>
+                Sign out
+              </span>
+            </div>
+          ) : null}
         </div>
       ) : null}
     </div>

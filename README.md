@@ -1,70 +1,96 @@
-# Getting Started with Create React App
+<h1 align="center">HILL STREET BOOKS</h1>
+<h2 align="center">HSB FRONT END</h2>
+<details open="open">
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About the project</a>
+    </li>
+    <li>
+      <a href="#prerequisites">Prerequisites</a>
+   </li>
+   <li>
+      <a href="#dependency-modules">Dependency Modules</a>
+   </li>
+   <li>
+      <a href="#installation">Installation</a>
+   </li>
+   <li>
+      <a href="#developers-guide">Developers Guide</a>
+   </li>
+  </ol>
+</details>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## About the project
 
-## Available Scripts
+Hill Street Books is an interactive bookstore for self-published children’s books authors. Hill Street Books is trying to bridge the gap between the user and the authors. Many bookstores only publish small information about the author and their book. Hill Street Books allows for interacting with content on the author page of the bookstore along with purchasing the specific book. Some of the content on the page is videos, coloring pages, contest, and different featured characters. Authors will be able to generate more profit by managing transactions themselves and marketing their own books. Children interacting with the page will keep wanting to come back and feel like the authors books are always coming back to life. 
 
-In the project directory, you can run:
+## Prerequisites
 
-### `npm start`
+The application's frontend is built using [React](https://reactjs.org/). It uses npm package manager to get its dependencies.
+To have this project running on you local machine, you need to install the following:
+1. [NPM](https://docs.npmjs.com/)
+2. [ReactJS](https://reactjs.org/)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Dependency Modules
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The following dependencies were used in the application
+| Name | Description |
+| -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| [react](https://www.npmjs.com/package/react) | React.js is an open-source model–view–viewmodel front end JavaScript framework for building user interfaces and single-page applications. |
+| [react-dom](https://www.npmjs.com/package/react-dom) | This package serves as the entry point to the DOM and server renderers for React.  |
+| [react-router-dom](https://www.npmjs.com/package/react-router-dom) | The react-router-dom package contains bindings for using React Router in web applications. |
+| [react-scripts](https://www.npmjs.com/package/react-scripts) | This package includes scripts and configuration used by Create React App.|
+| [axios](https://www.npmjs.com/package/axios) | Promise based HTTP client for the browser and node.js.|
+| [web-vitals](https://www.npmjs.com/package/web-vitals) | The web-vitals library is a tiny (~1K), modular library for measuring all the Web Vitals metrics on real users, in a way that accurately matches how they're measured by Chrome and reported to other Google tools.|
+| [email-validator](https://www.npmjs.com/package/email-validator) | A simple module to validate an e-mail address.|
+| [@fortawesome/fontawesome-svg-core](https://www.npmjs.com/package/@fortawesome/fontawesome-svg-core) | Font Awesome Kits are the easiest way to get Font Awesome icons into the projects.|
+| [@fortawesome/free-brands-svg-icons](https://www.npmjs.com/package/@fortawesome/free-brands-svg-icons) | Font Awesome Kits are the easiest way to get Font Awesome icons into the projects.|
+| [@fortawesome/free-solid-svg-icons](https://www.npmjs.com/package/@fortawesome/free-solid-svg-icons) | Font Awesome Kits are the easiest way to get Font Awesome icons into the projects.|
+| [@fortawesome/react-fontawesome](https://www.npmjs.com/package/@fortawesome/react-fontawesome) | Font Awesome Kits are the easiest way to get Font Awesome icons into the projects.|
+| [@testing-library/jest-dom](https://www.npmjs.com/package/@testing-library/jest-dom) |  Provides a set of custom jest matchers that you can use to extend jest. These will make your tests more declarative, clear to read and to maintain.|
+| [@testing-library/react](https://www.npmjs.com/package/@testing-library/react) |  The React Testing Library is a very lightweight solution for testing React components.|
+| [@testing-library/user-event](https://www.npmjs.com/package/@testing-library/user-event) |  User-event tries to simulate the real events that would happen in the browser as the user interacts with it.|
 
-### `npm test`
+## Dev Dependency Modules
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The following development dependencies were used in the application
+| Name | Description |
+| -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| [node-sass](https://www.npmjs.com/package/node-sass) | Node-sass is a library that provides binding for Node.js to LibSass, the C version of the popular stylesheet preprocessor, Sass. |
 
-### `npm run build`
+## Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To have this application running on you local machine, you need to install the <a href="#prerequisites">prerequisites</a> first.
+Once you have everything installed, you need to do the following,
+1. Clone the repository.
+   ```sh
+   git clone https://github.com/gokulramesh94/hill-street-books-frontend.git
+   ```
+2. Install dependencies.
+   ```sh
+   npm install
+   ```
+3. Copy the .env.sample to .env and update the Configuration Variables.
+   ```sh
+   cp .env.sample .env
+   ```
+4. Lints and fixes files.
+   ```sh
+   npm run lint
+   ```
+5. Compiles and hot-reloads for development.
+   ```sh
+   npm start
+   ```
+6. Compiles and minifies for production.
+   ```sh
+   npm run build
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Testing
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. Run e2e Tests.
+   ```sh
+   npm run test:e2e
+   ```

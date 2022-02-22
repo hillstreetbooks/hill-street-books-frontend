@@ -3,12 +3,14 @@
 @import '../../../styles/variables.scss';
 
 .header-wrapper {
+  position: sticky;
   width: 100%;
   padding: 1.5rem 3rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: $green-primary;
+  box-shadow: 0 1rem 2rem rgba(81, 131, 109, 0.25);
   .logo-wrapper {
     .logo {
       text-decoration: none;
@@ -20,6 +22,7 @@
   }
   .user-section {
     height: 3rem;
+    padding: 0 3rem;
     position: relative;
     .menu-wrapper {
       display: flex;
@@ -38,6 +41,25 @@
         height: 100%;
         width: auto;
         border-radius: 50%;
+      }
+    }
+    .menu {
+      position: absolute;
+      left: 3rem;
+      top: 4.5rem;
+      background-color: $green-primary;
+      font-family: $font-karla;
+      box-shadow: 0 1rem 2rem rgba(81, 131, 109, 0.25);
+      .menu-item {
+        cursor: pointer;
+        padding: 1rem 2rem;
+        display: block;
+        text-decoration: none;
+        color: $white;
+        &:hover {
+          background-color: $green-secondary;
+          color: $green-primary;
+        }
       }
     }
   }

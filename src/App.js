@@ -1,15 +1,13 @@
-import React, { createContext, useState } from 'react';
+import React from 'react';
+import { Provider } from 'react-redux';
 import Routes from './routes';
-
-export const UserContext = createContext(null);
+import { store } from './store/store';
 
 const App = () => {
-  const [user, setUser] = useState(null);
-
   return (
-    <UserContext.Provider value={user}>
+    <Provider store={store}>
       <Routes />
-    </UserContext.Provider>
+    </Provider>
   );
 };
 

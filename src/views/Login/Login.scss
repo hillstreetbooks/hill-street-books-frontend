@@ -5,6 +5,12 @@
 .login-wrapper {
   height: calc(100vh - 6rem);
   width: 100%;
+  .remain-loggedin-wrapper {
+    display: flex;
+    font-size: $regular17;
+    font-family: $font-karla;
+    margin: 1rem 0;
+  }
 }
 
 @media only screen and (max-width: $tab-big) {
