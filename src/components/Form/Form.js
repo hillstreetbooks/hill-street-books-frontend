@@ -14,7 +14,8 @@ const Form = ({ image, children, content, handleSubmit }) => {
       <div className="form-content-wrapper">
         <div className="heading">{heading}</div>
         <div className="sub-heading">
-          {subHeading} <Link to={redirectLink}>{redirectText}</Link>
+          {subHeading}{' '}
+          {redirectLink ? <Link to={redirectLink}>{redirectText}</Link> : null}
         </div>
         <form onSubmit={handleSubmit}>{children}</form>
       </div>

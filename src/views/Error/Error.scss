@@ -5,6 +5,7 @@
 #notfound {
   position: relative;
   height: 100vh;
+  pointer-events: none;
 }
 
 #notfound .notfound {
@@ -69,6 +70,7 @@
     transition: box-shadow 0.2s ease-in-out;
     text-decoration: none;
     text-transform: uppercase;
+    pointer-events: all;
     cursor: pointer;
     &:hover {
       box-shadow: 0 0 0 0.1rem currentColor;

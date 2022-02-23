@@ -18,8 +18,8 @@ const Image = ({ source, altText, fallbackImage }) => {
   return (
     <>
       {!load ? (
-        <div className="loader-wrapper">
-          <div className="loader"></div>
+        <div className="image-loader-wrapper">
+          <div className="image-loader"></div>
         </div>
       ) : null}
       <img

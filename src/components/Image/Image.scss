@@ -6,13 +6,13 @@
   width: 100%;
   height: auto;
 }
-.loader-wrapper {
+.image-loader-wrapper {
   width: 100%;
   height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  .loader {
+  .image-loader {
     border: 7px solid $green-tertiary;
     border-top: 7px solid $green-secondary;
     border-radius: 50%;

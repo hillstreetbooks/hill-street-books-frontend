@@ -51,6 +51,7 @@
       background-color: $green-primary;
       color: $white;
       margin-left: 0.5rem;
+      pointer-events: all;
       cursor: pointer;
       .hint-message-wrapper {
         display: none;
