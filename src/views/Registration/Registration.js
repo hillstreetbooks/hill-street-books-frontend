@@ -1,6 +1,6 @@
 import React, { memo, useEffect, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import { Form, FormContent, PopupModal } from '../../components';
+import { Form, FormContent, Loader, PopupModal } from '../../components';
 import { REGISTRATION } from '../../constants/Strings';
 import RegistrationBanner from '../../assets/reading-space.jpeg';
 import { useForm, useModal } from '../../hooks';
@@ -10,10 +10,7 @@ import './Registration.scss';
 const Registration = () => {
   const [errors, setErrors] = useState({});
   const [searchParams] = useSearchParams();
-
-  const passwordRegex = new RegExp(
-    '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})'
-  );
+  const [isLoading, updateLoader] = useState(false);
 
   useEffect(() => {
     if (searchParams.get('message')) {
@@ -25,31 +22,18 @@ const Registration = () => {
   const registerUser = () => {
     let validationResult = validate();
 
-    //Validate Password
-    if (inputs.password !== '' && !passwordRegex.test(inputs.password)) {
-      validationResult.password = {
-        hasError: true,
-        errorMessage: [
-          `Password requirements are not met. Please hover (?) to check the requirements.`
-        ]
-      };
-      //Validate Confirm Password
-      if (inputs.password.localeCompare(inputs.confirm_password)) {
-        validationResult.confirm_password = {
-          hasError: true,
-          errorMessage: ['Passwords do not match!']
-        };
-      }
-    }
     setErrors(validationResult);
     if (validationResult && Object.keys(validationResult).length === 0) {
+      updateLoader(true);
       AuthorService.registerAuthor(inputs)
         .then((response) => {
           toggleVisibility(!show);
           setModalMessage(response);
+          updateLoader(false);
         })
         .catch((error) => {
           console.log(error);
+          updateLoader(false);
         });
     }
   };
@@ -81,7 +65,7 @@ const Registration = () => {
         toggleVisibility={() => toggleVisibility(!show)}
         message={modalMessage}
       />
-      ;
+      {isLoading ? <Loader /> : null}
     </div>
   );
 };
