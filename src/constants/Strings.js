@@ -6,12 +6,16 @@ export const ROUTES = {
   HOME: '/',
   LOGIN: '/login',
   REGISTRATION: '/registration',
+  FORGOT_PASSWORD: '/forgot-password',
+  PASSWORD_RESET: '/password-reset/:userId/:uniqueString',
   ALL: '*'
 };
 
 export const API_ENDPOINTS = {
   REGISTER_AUTHOR: '/register-author',
-  LOGIN: '/login'
+  LOGIN: '/login',
+  FORGOT_PASSWORD: '/forgot-password',
+  RESET_PASSWORD: '/author/password-reset'
 };
 
 export const LOGIN = {
@@ -62,6 +66,53 @@ export const REGISTRATION = {
         name: 'name',
         label: 'Name *'
       },
+      {
+        type: 'password',
+        name: 'password',
+        label: 'Password *',
+        hints: [
+          'The password must contain at least 1 lowercase alphabetical character',
+          'The password must contain at least 1 uppercase alphabetical character',
+          'The password must contain at least 1 numeric character',
+          'The password must contain at least one special character',
+          'The password must be eight characters or longer'
+        ]
+      },
+      {
+        type: 'password',
+        name: 'confirm_password',
+        label: 'Confirm Password *'
+      }
+    ]
+  }
+};
+
+export const FORGOT_PASSWORD = {
+  FIELDS: {
+    username: ''
+  },
+  CONTENT: {
+    heading: 'Forgot your password?',
+    subHeading: 'Enter your username to reset your password',
+    fields: [
+      {
+        type: 'text',
+        name: 'username',
+        label: 'Username *'
+      }
+    ]
+  }
+};
+
+export const RESET_PASSWORD = {
+  FIELDS: {
+    password: '',
+    confirm_password: ''
+  },
+  CONTENT: {
+    heading: 'Reset your password',
+    subHeading: 'Enter your desired password',
+    fields: [
       {
         type: 'password',
         name: 'password',

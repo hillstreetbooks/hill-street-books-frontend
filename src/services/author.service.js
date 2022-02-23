@@ -37,4 +37,46 @@ export default class AuthorService {
       console.error('Error - AuthorService -> login : ', error);
     }
   };
+
+  /**
+   * Validates the author's email and sends a retrieve password link
+   * @param username
+   */
+  static retrievePassword = async (username) => {
+    try {
+      const response = await Axios.post(API_ENDPOINTS.FORGOT_PASSWORD, {
+        username: username.toLowerCase()
+      });
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      console.error('Error - AuthorService -> retrievePassword : ', error);
+    }
+  };
+
+  /**
+   * Reset Author's Password
+   * @param userId
+   * @param uniqueString
+   * @param password
+   * @param confirm_password
+   */
+  static resetPassword = async (
+    userId,
+    uniqueString,
+    password,
+    confirm_password
+  ) => {
+    try {
+      const response = await Axios.post(API_ENDPOINTS.RESET_PASSWORD, {
+        userId,
+        uniqueString,
+        password,
+        confirm_password
+      });
+      return response.data;
+    } catch (error) {
+      console.error('Error - AuthorService -> resetPassword : ', error);
+    }
+  };
 }
