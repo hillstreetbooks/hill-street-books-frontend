@@ -5,6 +5,17 @@ import FormContent from './Form/FormContent';
 import Header from './Shared/Header/Header';
 import Image from './Image/Image';
 import Input from './Input/Input';
+import Loader from './Shared/Loader/Loader';
 import PopupModal from './Shared/Modal/Modal';
 
-export { Button, Footer, Form, FormContent, Header, Image, Input, PopupModal };
+export {
+  Button,
+  Footer,
+  Form,
+  FormContent,
+  Header,
+  Image,
+  Input,
+  Loader,
+  PopupModal
+};
