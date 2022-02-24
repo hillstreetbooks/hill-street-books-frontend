@@ -1,14 +1,24 @@
 import { Axios } from '../helpers';
 import { API_ENDPOINTS } from '../constants/Strings';
 
+/** @module AuthorService */
 export default class AuthorService {
   /**
-   * Inserts the author in to the database
-   * @param author_details
+   * @function registerAuthor
+   * @description This method inserts the author's details as a record in the database
+   * @param {*} username The Author's EmailID
+   * @param {*} name The Author's Name
+   * @param {*} password The Author's Password
+   * @param {*} confirm_password Re-enter the password
+   * @returns {String} Returns a message
    */
-  static registerAuthor = async (author_details) => {
+  static registerAuthor = async (
+    username,
+    name,
+    password,
+    confirm_password
+  ) => {
     try {
-      const { username, name, password, confirm_password } = author_details;
       const response = await Axios.post(API_ENDPOINTS.REGISTER_AUTHOR, {
         username: username.toLowerCase(),
         name,
@@ -22,10 +32,14 @@ export default class AuthorService {
   };
 
   /**
-   * Validates the author's credentials
-   * @param login_details
+   * @function login
+   * @description This method validates the author's credentials
+   * @param {*} username The Author's EmailID
+   * @param {*} password The Author's Password
+   * @param {*} remainLoggedIn Remain Logged In
+   * @returns {String} Returns a message
    */
-  static login = async ({ username, password, remainLoggedIn }) => {
+  static login = async (username, password, remainLoggedIn) => {
     try {
       const response = await Axios.post(API_ENDPOINTS.LOGIN, {
         username: username.toLowerCase(),
@@ -39,8 +53,10 @@ export default class AuthorService {
   };
 
   /**
-   * Validates the author's email and sends a retrieve password link
-   * @param username
+   * @function retrievePassword
+   * @description This method validates the author's email and sends a retrieve password link
+   * @param {*} username The Author's EmailID
+   * @returns {String} Returns a message
    */
   static retrievePassword = async (username) => {
     try {
@@ -55,11 +71,13 @@ export default class AuthorService {
   };
 
   /**
-   * Reset Author's Password
-   * @param userId
-   * @param uniqueString
-   * @param password
-   * @param confirm_password
+   * @function resetPassword
+   * @description This method resets the Author's Password
+   * @param {*} userId The Author's unique ID in the database
+   * @param {*} uniqueString Unique generated String
+   * @param {*} password The Author's Password
+   * @param {*} confirm_password Re-enter the password
+   * @returns {String} Returns a message
    */
   static resetPassword = async (
     userId,
