@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { signOut } from '../../../store';
-import PropTypes from 'prop-types';
 import Image from '../../Image/Image';
 import UserBadge from '../../../assets/user-badge-two.png';
 import './Header.scss';
 
-const Header = ({ showProfile }) => {
+const Header = () => {
   const SHOPIFY_URL =
     process.env.SHOPIFY_URL || 'https://hill-street-books.myshopify.com/';
   const [welcomeText, setWelcomeText] = useState('Sign In');
@@ -15,6 +14,9 @@ const Header = ({ showProfile }) => {
   const navigate = useNavigate();
   const userInfo = useSelector((state) => state.user.info);
   const dispatch = useDispatch();
+  const location = useLocation();
+  const showProfile =
+    location.pathname !== '/login' && location.pathname !== '/registration';
 
   useEffect(() => {
     if (userInfo && userInfo?.name) setWelcomeText(`Hi ${userInfo.name}`);
@@ -67,14 +69,6 @@ const Header = ({ showProfile }) => {
       ) : null}
     </div>
   );
-};
-
-Header.defaultProps = {
-  showProfile: true
-};
-
-Header.propTypes = {
-  showProfile: PropTypes.bool
 };
 
 export default Header;
