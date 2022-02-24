@@ -26,10 +26,13 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts -r @cypress/instrument-cra start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "test:e2e:open": "cypress open",
+    "test:e2e:run": "cypress run",
+    "ex:file": "npx nyc report --reporter=lcov",
     "docs:generate": "jsdoc -c jsdoc.json --readme README.md"
   },
   "eslintConfig": {
@@ -51,7 +54,17 @@
     ]
   },
   "devDependencies": {
+    "@cypress/code-coverage": "^3.9.12",
+    "@cypress/instrument-cra": "^1.4.0",
+    "@cypress/react": "^5.12.3",
+    "cypress": "^9.5.0",
     "jsdoc": "^3.6.10",
     "node-sass": "^7.0.1"
+  },
+  "nyc": {
+    "exclude": [
+      "src/serviceWorker.js",
+      "src/reportWebVitals.js"
+    ]
   }
 }
