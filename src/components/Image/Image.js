@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ImageUnavailable from '../../assets/no-image-available.png';
+import ImageUnavailable from '../../assets/no-image.png';
 import PropTypes from 'prop-types';
 import './Image.scss';
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { signOut } from '../../../store';
 import PropTypes from 'prop-types';
@@ -29,8 +29,15 @@ const Header = ({ showProfile }) => {
   };
 
   const handleSignOut = () => {
+    toggleMenu(!menu);
     dispatch(signOut());
+    setWelcomeText('Sign In');
     navigate('/login');
+  };
+
+  const navigateToProfile = () => {
+    toggleMenu(!menu);
+    navigate('/profile');
   };
 
   return (
@@ -48,9 +55,9 @@ const Header = ({ showProfile }) => {
           </div>
           {menu ? (
             <div className="menu">
-              <Link className="menu-item" to="/profile">
+              <span className="menu-item" onClick={navigateToProfile}>
                 View Profile
-              </Link>
+              </span>
               <span className="menu-item" onClick={handleSignOut}>
                 Sign out
               </span>

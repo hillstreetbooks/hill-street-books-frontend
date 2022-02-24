@@ -22,7 +22,7 @@ const Login = () => {
     if (validationResult && Object.keys(validationResult).length === 0) {
       const { username, password } = inputs;
       updateLoader(true);
-      AuthorService.login({ username, password, remainLoggedIn })
+      AuthorService.login(username, password, remainLoggedIn)
         .then((response) => {
           updateLoader(false);
           if (response && response._id) {

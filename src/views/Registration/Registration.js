@@ -25,7 +25,8 @@ const Registration = () => {
     setErrors(validationResult);
     if (validationResult && Object.keys(validationResult).length === 0) {
       updateLoader(true);
-      AuthorService.registerAuthor(inputs)
+      const { username, name, password, confirm_password } = inputs;
+      AuthorService.registerAuthor(username, name, password, confirm_password)
         .then((response) => {
           toggleVisibility(!show);
           setModalMessage(response);
