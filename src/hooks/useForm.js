@@ -3,6 +3,9 @@ import * as EmailValidator from 'email-validator';
 
 const useForm = (inputFields, callback) => {
   const [inputs, setInputs] = useState(inputFields);
+  const passwordRegex = new RegExp(
+    '^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})'
+  );
 
   const handleSubmit = (event) => {
     if (event) {
@@ -35,6 +38,25 @@ const useForm = (inputFields, callback) => {
         errors[input] = {
           hasError: true,
           errorMessage: [`Please enter a valid Email ID`]
+        };
+      }
+      //Validate Password
+      else if (input === 'password' && !passwordRegex.test(inputs.password)) {
+        errors[input] = {
+          hasError: true,
+          errorMessage: [
+            `Password requirements are not met. Please hover (?) to check the requirements.`
+          ]
+        };
+      }
+      //Validate Confirm Password
+      else if (
+        input === 'confirm_password' &&
+        inputs.password.localeCompare(inputs.confirm_password)
+      ) {
+        errors[input] = {
+          hasError: true,
+          errorMessage: ['Passwords do not match!']
         };
       }
     });

@@ -1,37 +1,42 @@
-import React, { memo, useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { Form, FormContent, Loader, PopupModal } from '../../components';
-import { REGISTRATION } from '../../constants/Strings';
-import RegistrationBanner from '../../assets/reading-space.jpeg';
+import { RESET_PASSWORD } from '../../constants/Strings';
+import ForgotPasswordBanner from '../../assets/library.jpeg';
 import { useForm, useModal } from '../../hooks';
 import { AuthorService } from '../../services';
-import './Registration.scss';
+import './ForgotPassword.scss';
 
-const Registration = () => {
+const ResetPassword = () => {
   const [errors, setErrors] = useState({});
-  const [searchParams] = useSearchParams();
+  const { userId, uniqueString } = useParams();
   const [isLoading, updateLoader] = useState(false);
 
-  useEffect(() => {
-    if (searchParams.get('message')) {
-      toggleVisibility(!show);
-      setModalMessage(searchParams.get('message'));
-    }
-  }, [searchParams]);
-
-  const registerUser = () => {
+  const resetPassword = () => {
+    const { password, confirm_password } = inputs;
     let validationResult = validate();
-
     setErrors(validationResult);
     if (validationResult && Object.keys(validationResult).length === 0) {
       updateLoader(true);
-      AuthorService.registerAuthor(inputs)
+      AuthorService.resetPassword(
+        userId,
+        uniqueString,
+        password,
+        confirm_password
+      )
         .then((response) => {
           toggleVisibility(!show);
-          setModalMessage(response);
+          setModalMessage(
+            response ||
+              'Oops, Something went wrong! Please contact the administrator.'
+          );
           updateLoader(false);
         })
         .catch((error) => {
+          toggleVisibility(!show);
+          setModalMessage(
+            'Oops, Something went wrong! Please contact the administrator.'
+          );
           console.log(error);
           updateLoader(false);
         });
@@ -41,23 +46,23 @@ const Registration = () => {
   const { show, toggleVisibility, modalMessage, setModalMessage } = useModal();
 
   const { inputs, handleInputChange, handleSubmit, validate } = useForm(
-    REGISTRATION.FIELDS,
-    registerUser
+    RESET_PASSWORD.FIELDS,
+    resetPassword
   );
 
   return (
-    <div className="registration-wrapper">
+    <div className="forgot-password-wrapper">
       <Form
-        image={RegistrationBanner}
-        content={REGISTRATION.CONTENT}
+        image={ForgotPasswordBanner}
+        content={RESET_PASSWORD.CONTENT}
         handleSubmit={handleSubmit}
       >
         <FormContent
-          fields={REGISTRATION.CONTENT.fields}
+          fields={RESET_PASSWORD.CONTENT.fields}
           values={inputs}
-          handleInputChange={handleInputChange}
           errors={errors}
-          buttonText="Create"
+          handleInputChange={handleInputChange}
+          buttonText="Reset Password"
         ></FormContent>
       </Form>
       <PopupModal
@@ -70,4 +75,4 @@ const Registration = () => {
   );
 };
 
-export default memo(Registration);
+export default ResetPassword;

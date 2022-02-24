@@ -5,11 +5,20 @@
 .login-wrapper {
   height: calc(100vh - 6rem);
   width: 100%;
-  .remain-loggedin-wrapper {
+  .options-wrapper {
+    width: 100%;
     display: flex;
+    justify-content: space-between;
     font-size: $regular17;
     font-family: $font-karla;
     margin: 1rem 0;
+    .remain-signed-in {
+      display: flex;
+      align-items: center;
+    }
+    span {
+      cursor: pointer;
+    }
   }
 }
 
