@@ -6,6 +6,7 @@ import Header from './Shared/Header/Header';
 import Image from './Image/Image';
 import Input from './Input/Input';
 import Loader from './Shared/Loader/Loader';
+import MultiStep from './MultiStep/MultiStep';
 import PopupModal from './Shared/Modal/Modal';
 
 export {
@@ -17,5 +18,6 @@ export {
   Image,
   Input,
   Loader,
+  MultiStep,
   PopupModal
 };
