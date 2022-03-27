@@ -77,31 +77,29 @@ describe('Login', () => {
     );
   });
 
-  it(`Verify if the menu is opened on click and has 2 menu items`, () => {
+  it(`Verify if the menu is opened on click and has 4 menu items`, () => {
     cy.get('.header-wrapper .user-section .menu-wrapper').click();
     cy.get('.header-wrapper .user-section .menu .menu-item').should(
       'have.length',
-      2
+      4
     );
   });
 
   it(`Verify whether the user is redirected to the profile page on click`, () => {
     cy.get(
-      '.header-wrapper .user-section .menu .menu-item:first-child'
+      '.header-wrapper .user-section .menu .menu-item:nth-child(3)'
     ).click();
     cy.url().should('eq', 'http://localhost:3000/profile');
   });
 
   it(`Verify whether the user is signed out on click of the sign out option`, () => {
-    cy.get('.header-wrapper .user-section .menu-wrapper').click();
-    cy.get('.header-wrapper .user-section .menu .menu-item:last-child').click();
+    cy.get('.header-wrapper .user-section .menu-wrapper').click({
+      force: true
+    });
+    cy.get('.header-wrapper .user-section .menu .menu-item:last-child').click({
+      force: true
+    });
     cy.url().should('eq', 'http://localhost:3000/login');
-  });
-
-  it(`Verify whether the author is signed out`, () => {
-    cy.get('.header-wrapper .user-section .menu-wrapper .details').contains(
-      'Sign In'
-    );
   });
 
   it(`Verify whether the store is updated after sign out`, () => {
@@ -121,6 +119,6 @@ const validAuthentication = (cy) => {
   cy.get('.login-wrapper form button.button').click();
   cy.url().should(
     'equal',
-    'http://localhost:3000/author/62006e73b5a819f3d36d4fcc'
+    'http://localhost:3000/author/edit/62006e73b5a819f3d36d4fcc'
   );
 };
