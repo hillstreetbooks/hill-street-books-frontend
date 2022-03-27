@@ -74,7 +74,6 @@ const Login = () => {
                 type="checkbox"
                 checked={remainLoggedIn}
                 onChange={() => {
-                  console.log(remainLoggedIn);
                   isRemainLoggedIn(!remainLoggedIn);
                 }}
               />

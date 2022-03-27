@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { css, styled, setup } from 'goober';
+import { Button } from '..';
 import './MultiStep.scss';
 
 setup(React.createElement);
@@ -100,15 +101,16 @@ const getButtonsState = (indx, length) => {
   }
 };
 
-export default function MultiStep({
+const MultiStep = ({
   activeStep,
-  steps,
   showNavigation,
+  steps,
   prevStyle,
   nextStyle,
   activeComponentClassName,
-  inactiveComponentClassName
-}) {
+  inactiveComponentClassName,
+  handleSubmit
+}) => {
   const showNav = typeof showNavigation === 'undefined' ? true : showNavigation;
 
   const [startingStep] = useState(getStep(0, activeStep, steps.length));
@@ -121,7 +123,6 @@ export default function MultiStep({
   );
 
   useEffect(() => {
-    console.log('Index changed: ', activeStep);
     setStepState(activeStep);
   }, [activeStep]);
 
@@ -131,39 +132,39 @@ export default function MultiStep({
     setButtons(getButtonsState(indx, steps.length));
   };
 
-  const next = () => setStepState(compState + 1);
+  const next = () => {
+    let stepRef = steps[compState]?.component?.ref?.current || null;
+    if (compState === 0) {
+      if (stepRef && stepRef.validateFields(stepRef.data))
+        setStepState(compState + 1);
+      else stepRef.updateStore(stepRef.data);
+    } else {
+      setStepState(compState + 1);
+    }
+    stepRef.updateStore(stepRef.data);
+  };
+
   const previous = () =>
     setStepState(compState > 0 ? compState - 1 : compState);
-
-  const handleOnClick = (evt) => {
-    if (
-      evt.currentTarget.value === steps.length - 1 &&
-      compState === steps.length - 1
-    ) {
-      setStepState(steps.length);
-    } else {
-      setStepState(evt.currentTarget.value);
-    }
-  };
 
   const renderSteps = () =>
     steps.map((s, i) => {
       const { name } = s;
       if (stylesState[i] === 'todo') {
         return (
-          <Li className={Todo} onClick={handleOnClick} key={i} value={i}>
+          <Li className={Todo} key={i} value={i}>
             <span>{name}</span>
           </Li>
         );
       } else if (stylesState[i] === 'doing') {
         return (
-          <Li className={Doing} onClick={handleOnClick} key={i} value={i}>
+          <Li className={Doing} key={i} value={i}>
             <span>{name}</span>
           </Li>
         );
       } else {
         return (
-          <Li className={Done} onClick={handleOnClick} key={i} value={i}>
+          <Li className={Done} key={i} value={i}>
             <span>{name}</span>
           </Li>
         );
@@ -172,25 +173,27 @@ export default function MultiStep({
 
   const renderNav = (show) =>
     show && (
-      <div>
-        <button
+      <div className="buttons-wrapper">
+        <div
           style={buttonsState.showPreviousBtn ? prevStyle : { display: 'none' }}
-          onClick={previous}
         >
-          Prev
-        </button>
-
-        <button
-          style={buttonsState.showNextBtn ? nextStyle : { display: 'none' }}
-          onClick={next}
+          <Button buttonText="Previous" handleClick={previous} />
+        </div>
+        <div style={buttonsState.showNextBtn ? nextStyle : { display: 'none' }}>
+          <Button buttonText="Next" handleClick={next} />
+        </div>
+        <div
+          style={
+            compState === steps.length - 1 ? nextStyle : { display: 'none' }
+          }
         >
-          Next
-        </button>
+          <Button buttonText="Submit" handleClick={handleSubmit} />
+        </div>
       </div>
     );
 
   return (
-    <div>
+    <div className="multistep-wrapper">
       <Ol>{renderSteps()}</Ol>
       {inactiveComponentClassName ? (
         steps.map((step, index) => {
@@ -210,4 +213,6 @@ export default function MultiStep({
       <div>{renderNav(showNav)}</div>
     </div>
   );
-}
+};
+
+export default React.memo(MultiStep);
