@@ -42,6 +42,16 @@ const Header = () => {
     navigate('/profile');
   };
 
+  const navigateToAuthorPage = () => {
+    toggleMenu(!menu);
+    navigate(`/author/${userInfo._id}`);
+  };
+
+  const navigateToAuthorEditPage = () => {
+    toggleMenu(!menu);
+    navigate(`/author/edit/${userInfo._id}`);
+  };
+
   return (
     <div className="header-wrapper">
       <div className="logo-wrapper">
@@ -57,6 +67,12 @@ const Header = () => {
           </div>
           {menu ? (
             <div className="menu">
+              <span className="menu-item" onClick={navigateToAuthorPage}>
+                Author Page
+              </span>
+              <span className="menu-item" onClick={navigateToAuthorEditPage}>
+                Edit Author Page
+              </span>
               <span className="menu-item" onClick={navigateToProfile}>
                 View Profile
               </span>
