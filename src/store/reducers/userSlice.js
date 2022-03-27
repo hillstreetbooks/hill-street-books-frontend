@@ -8,9 +8,12 @@ export const userSlice = createSlice({
   },
   reducers: {
     setInfo: (state, action) => {
-      const { _id, name, username, token } = action.payload;
-      Cookies.set('hsb_user', JSON.stringify({ _id, name, username, token }));
-      state.info = JSON.parse(Cookies.get('hsb_user')) || null;
+      let userInfo = state.info || {};
+      Object.keys(action.payload).forEach((key) => {
+        userInfo[key] = action.payload[key];
+      });
+      Cookies.set('hsb_user', JSON.stringify(userInfo));
+      state.info = userInfo || null;
     },
     signOut: (state) => {
       Cookies.remove('hsb_user');
