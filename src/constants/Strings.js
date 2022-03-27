@@ -2,20 +2,26 @@ import { faShopify } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope, faHome } from '@fortawesome/free-solid-svg-icons';
 
 export const ROUTES = {
+  ALL: '*',
   AUTHOR_PAGE: '/author/:authorId',
+  AUTHOR_EDIT_PAGE: '/author/edit/:authorId',
   HOME: '/',
   LOGIN: '/login',
+  PROFILE: '/profile',
   REGISTRATION: '/registration',
   FORGOT_PASSWORD: '/forgot-password',
-  PASSWORD_RESET: '/password-reset/:userId/:uniqueString',
-  ALL: '*'
+  PASSWORD_RESET: '/password-reset/:userId/:uniqueString'
 };
 
 export const API_ENDPOINTS = {
+  FETCH_AUTHOR_CONTENT: '/author/content',
+  FETCH_AUTHOR_INFO: '/fetch-author-info',
+  UPDATE_AUTHOR_CONTENT: '/author/update-content',
   REGISTER_AUTHOR: '/register-author',
   LOGIN: '/login',
   FORGOT_PASSWORD: '/forgot-password',
-  RESET_PASSWORD: '/author/password-reset'
+  RESET_PASSWORD: '/author/password-reset',
+  UPDATE_AUTHOR_INFO: '/update-author-info'
 };
 
 export const LOGIN = {
@@ -32,12 +38,37 @@ export const LOGIN = {
       {
         type: 'text',
         name: 'username',
-        label: 'Username *'
+        label: 'Username (email) *'
       },
       {
         type: 'password',
         name: 'password',
         label: 'Password *'
+      }
+    ]
+  }
+};
+
+export const PROFILE = {
+  FIELDS: {
+    username: '',
+    name: ''
+  },
+  CONTENT: {
+    heading: 'Welcome, ',
+    subHeading: 'Please find your registered information below',
+    redirectText: null,
+    redirectLink: null,
+    fields: [
+      {
+        type: 'text',
+        name: 'username',
+        label: 'Username (email) *'
+      },
+      {
+        type: 'text',
+        name: 'name',
+        label: 'Name *'
       }
     ]
   }
@@ -59,7 +90,7 @@ export const REGISTRATION = {
       {
         type: 'text',
         name: 'username',
-        label: 'Username *'
+        label: 'Username (email) *'
       },
       {
         type: 'text',
