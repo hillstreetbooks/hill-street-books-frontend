@@ -12,6 +12,8 @@
 .env
 
 # testing
+/cypress/fixtures/example.json
+/cypress/screenshots
 /coverage
 /.nyc_output
 
