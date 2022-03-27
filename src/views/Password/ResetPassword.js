@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { Form, FormContent, Loader, PopupModal } from '../../components';
 import { RESET_PASSWORD } from '../../constants/Strings';
 import ForgotPasswordBanner from '../../assets/library.jpeg';
 import { useForm, useModal } from '../../hooks';
 import { AuthorService } from '../../services';
+import { signOut } from '../../store';
 import './ForgotPassword.scss';
 
 const ResetPassword = () => {
   const [errors, setErrors] = useState({});
   const { userId, uniqueString } = useParams();
   const [isLoading, updateLoader] = useState(false);
+  const dispatch = useDispatch();
 
   const resetPassword = () => {
     const { password, confirm_password } = inputs;
@@ -25,6 +28,7 @@ const ResetPassword = () => {
         confirm_password
       )
         .then((response) => {
+          dispatch(signOut());
           toggleVisibility(!show);
           setModalMessage(
             response ||
