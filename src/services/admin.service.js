@@ -21,4 +21,28 @@ export default class AdminService {
       console.error('Error - AdminService -> fetchAuthors : ', error);
     }
   };
+
+  /**
+   * @function publishAuthorContentPage
+   * @description This method publishes the author content
+   * @param {String} _id Author's ID
+   * @param {String} message Admin's message to the author
+   * @returns {Array} Returns an array of Authors
+   */
+  static publishAuthorContentPage = async (_id, message, token) => {
+    try {
+      const response = await Axios.post(
+        API_ENDPOINTS.PUBLISH_AUTHOR_PAGE,
+        { _id, message },
+        { headers: { 'x-access-token': token } }
+      );
+
+      return response.data;
+    } catch (error) {
+      console.error(
+        'Error - AdminService -> publishAuthorContentPage : ',
+        error
+      );
+    }
+  };
 }
