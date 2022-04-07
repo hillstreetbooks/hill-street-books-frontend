@@ -54,6 +54,7 @@ const StepFour = () => {
   };
 
   useEffect(() => {
+    console.log(videosInitialState);
     setVideos(videosInitialState);
   }, [videosInitialState]);
 

@@ -57,9 +57,9 @@ const AuthorEdit = () => {
   };
 
   useEffect(() => {
-    let { username, token } = userInfo;
+    let { _id, token } = userInfo;
     updateLoader(true);
-    AuthorContentService.fetchContent(username, token)
+    AuthorContentService.fetchContent(_id, token)
       .then((response) => {
         if (response && Object.keys(response).length > 0) {
           console.log(response);

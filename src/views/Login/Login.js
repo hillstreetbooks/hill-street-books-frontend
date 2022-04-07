@@ -27,7 +27,8 @@ const Login = () => {
           updateLoader(false);
           if (response && response._id) {
             dispatch(setInfo(response));
-            navigate(`/author/${response._id}`);
+            if (response?.isAdmin) navigate('/admin/dashboard');
+            else navigate(`/author/${response._id}`);
           } else {
             toggleVisibility(!show);
             setModalMessage(
@@ -79,7 +80,10 @@ const Login = () => {
               />
               Remain Signed In
             </div>
-            <span onClick={() => navigate('/forgot-password')}>
+            <span
+              className="forgot-password"
+              onClick={() => navigate('/forgot-password')}
+            >
               Forgot Password?
             </span>
           </div>

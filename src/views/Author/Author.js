@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { memo, useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { SwiperSlide } from 'swiper/react';
 import YouTube from 'react-youtube';
@@ -16,11 +16,12 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { resetAuthorContent } from '../../store';
 import './Author.scss';
 
-const Author = () => {
+const Author = ({ isAdmin }) => {
   const userInfo = useSelector((state) => state.user.info);
   const authorContent = useSelector((state) => state.authorContent);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { authorId } = useParams();
   const { author_details, social_links, books, videos } = authorContent;
   const [details, setDetails] = useState({
     author_details,
@@ -28,9 +29,12 @@ const Author = () => {
     books,
     videos
   });
+  const SHOPIFY_URL =
+    process.env.SHOPIFY_URL || 'https://hill-street-books.myshopify.com/';
   const [showModal, setShowModal] = useState(false);
   const [book, setBook] = useState({});
   const [isLoading, updateLoader] = useState(false);
+  const [authorNotFound, setAuthorNotFound] = useState(false);
   const opts = {
     height: '360',
     width: '100%',
@@ -48,8 +52,7 @@ const Author = () => {
 
   const _renderSlides = () => {
     let bookList = [];
-    //details.books.forEach((item, index) => {
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 9; i++) {
       bookList.push(
         <SwiperSlide key={i}>
           <div
@@ -79,7 +82,6 @@ const Author = () => {
         </SwiperSlide>
       );
     }
-    //});
     // details.books.forEach((item, index) => {
     //   //for (let i = 0; i < 3; i++) {
     //   bookList.push(
@@ -110,7 +112,6 @@ const Author = () => {
   const _renderVideos = () => {
     let videoList = [];
     details.videos.forEach((video, index) => {
-      console.log(video);
       if (video && video.value !== '') {
         var url = new URL(video.value);
         var videoId = url.searchParams.get('v');
@@ -150,109 +151,127 @@ const Author = () => {
   };
 
   useEffect(() => {
-    const { username, token } = userInfo;
-    console.log(details);
+    const { token } = userInfo;
     updateLoader(true);
-    AuthorContentService.fetchContent(username, token)
+    AuthorContentService.fetchContent(authorId, token)
       .then((response) => {
         if (response && Object.keys(response).length > 0) {
-          console.log(response);
           setDetails(response);
           updateLoader(false);
+        } else if (isAdmin) {
+          updateLoader(false);
+          setAuthorNotFound(true);
         } else {
           dispatch(resetAuthorContent());
-          navigate(`/author/edit/${userInfo._id}`);
+          navigate(`/author/edit/${authorId}`);
+          updateLoader(false);
         }
       })
       .catch((error) => {
         console.log(error);
         updateLoader(false);
       });
-  }, []);
+  }, [authorId]);
 
   return (
     <>
-      <div className="author-content-wrapper">
-        <div className="title">
-          {`${details?.author_details?.first_name?.value} 
+      <>
+        {!authorNotFound ? (
+          <div className="author-content-wrapper">
+            <div className="title">
+              {`${details?.author_details?.first_name?.value} 
           ${details?.author_details?.last_name?.value}`}
-        </div>
-        <div className="author-content-row">
-          <div className="display-picture-wrapper">
-            <Image source={details?.author_details?.display_picture.value} />
-          </div>
-          <div className="description">
-            {details?.author_details?.biography.value}
-          </div>
-        </div>
-        <div className="heading">Come Join the Adventure!</div>
-        {!details.books.length ? (
-          <div className="no-books" key={0}>
-            No Books to display
-          </div>
-        ) : (
-          <Slider
-            slidesPerView={5}
-            spaceBetween={30}
-            loop={true}
-            draggable={false}
-          >
-            {_renderSlides()}
-          </Slider>
-        )}
-        <div className="heading">Watch the books come alive</div>
-        {!details.videos.length ? (
-          <div className="no-books" key={0}>
-            No Videos to display
-          </div>
-        ) : (
-          <div className="video-wrapper">{_renderVideos()}</div>
-        )}
-        <div className="social-links-wrapper">
-          <div className="heading">Reach me using</div>
-          <div className="contents">{_renderSocialLinks()}</div>
-        </div>
-        {showModal ? (
-          <div className="modal-overlay">
-            <div className="modal-wrapper">
-              <div>{book.title}</div>
-              <div className="row">
-                <div className="book-cover">
-                  <Image source={book.bookCover} altText={book.title} />
-                </div>
-                <div className="book-details">
-                  <div className="description">{book.description}</div>
+            </div>
+            <div className="author-content-row">
+              <div className="display-picture-wrapper">
+                <Image
+                  source={details?.author_details?.display_picture.value}
+                />
+              </div>
+              <div className="description">
+                {details?.author_details?.biography.value}
+              </div>
+            </div>
+            <div className="heading">Come Join the Adventure!</div>
+            {!details.books.length ? (
+              <div className="no-books" key={0}>
+                No Books to display
+              </div>
+            ) : (
+              <Slider
+                slidesPerView={5}
+                spaceBetween={30}
+                //loop={true}
+                centerInsufficientSlides={true}
+              >
+                {_renderSlides()}
+              </Slider>
+            )}
+            <div className="heading">Watch the books come alive</div>
+            {!details.videos.length ? (
+              <div className="no-books" key={0}>
+                No Videos to display
+              </div>
+            ) : (
+              <div className="video-wrapper">{_renderVideos()}</div>
+            )}
+            <div className="social-links-wrapper">
+              <div className="heading">Reach me using</div>
+              <div className="contents">{_renderSocialLinks()}</div>
+            </div>
+            {showModal ? (
+              <div className="modal-overlay">
+                <div className="modal-wrapper">
+                  <div>{book.title}</div>
                   <div className="row">
-                    <div className="price">{book.price}</div>
-                  </div>
-                  <div className="buttons-wrapper">
-                    <Button
-                      buttonText="Add To Cart"
-                      handleClick={() =>
-                        (window.location.href =
-                          'https://hill-street-books.myshopify.com/')
-                      }
-                    />
-                    <Button
-                      buttonText="Cancel"
-                      handleClick={() => {
-                        setShowModal(!showModal);
-                        // document.body.style.overflow = showModal
-                        //   ? 'auto'
-                        //   : 'hidden';
-                      }}
-                    />
+                    <div className="book-cover">
+                      <Image source={book.bookCover} altText={book.title} />
+                    </div>
+                    <div className="book-details">
+                      <div className="description">{book.description}</div>
+                      <div className="row">
+                        <div className="price">{book.price}</div>
+                      </div>
+                      <div className="buttons-wrapper">
+                        <Button
+                          buttonText="Add To Cart"
+                          handleClick={() =>
+                            (window.location.href =
+                              'https://hill-street-books.myshopify.com/')
+                          }
+                        />
+                        <Button
+                          buttonText="Cancel"
+                          handleClick={() => {
+                            setShowModal(!showModal);
+                            // document.body.style.overflow = showModal
+                            //   ? 'auto'
+                            //   : 'hidden';
+                          }}
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
+            ) : null}
+          </div>
+        ) : (
+          <div id="notfound">
+            <div className="notfound">
+              <div className="notfound-404">
+                <h1>Oops!</h1>
+                <h2>404 - The Author does not have a content page.</h2>
+              </div>
+              <a href={SHOPIFY_URL}>Go To Homepage</a>
             </div>
           </div>
-        ) : null}
-      </div>
+        )}
+      </>
 
       {isLoading ? <Loader /> : null}
     </>
   );
 };
 
-export default Author;
+export default memo(Author);

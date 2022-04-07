@@ -26,8 +26,12 @@
     padding: 3rem 6rem;
     .display-picture-wrapper {
       width: 25%;
+      height: 360px;
+      display: flex;
+      align-items: center;
       img {
         border-radius: 50%;
+        max-height: 360px;
       }
     }
     .description {
@@ -46,7 +50,7 @@
       .book-wrapper {
         width: 100%;
         padding: 1.5rem;
-        box-shadow: 0 0 6px 3px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 0 6px 3px rgba(0, 0, 0, 0.05);
         border-radius: 10px;
         margin-bottom: 2%;
         cursor: pointer;
@@ -103,6 +107,9 @@
     .video-item {
       width: 47%;
       margin-bottom: 3%;
+      box-shadow: 0 0 6px 3px rgba(0, 0, 0, 0.05);
+      padding: 1rem;
+      border-radius: 10px;
       &:not(:nth-child(2n)) {
         margin-right: 6%;
       }
@@ -218,6 +225,24 @@
 
 @media only screen and (max-width: $tab-big) {
   .author-content-wrapper {
+    .author-content-row {
+      flex-direction: column;
+      .display-picture-wrapper {
+        width: 50%;
+        height: auto;
+      }
+      .description {
+        width: 100%;
+        margin-top: 3rem;
+      }
+    }
+    .video-wrapper {
+      flex-direction: column;
+      .video-item {
+        width: 100%;
+        margin-right: 0 !important;
+      }
+    }
   }
 }
 
