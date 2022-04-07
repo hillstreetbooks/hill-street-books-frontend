@@ -69,4 +69,28 @@ export default class AdminService {
       );
     }
   };
+
+  /**
+   * @function removeAuthorContentPage
+   * @description This method removes the author content
+   * @param {String} _id Author's ID
+   * @param {String} message Admin's message to the author
+   * @returns {Array} Returns an array of Authors
+   */
+  static removeAuthorContentPage = async (_id, message, token) => {
+    try {
+      const response = await Axios.post(
+        API_ENDPOINTS.REMOVE_AUTHOR_PAGE,
+        { _id, message },
+        { headers: { 'x-access-token': token } }
+      );
+
+      return response.data;
+    } catch (error) {
+      console.error(
+        'Error - AdminService -> removeAuthorContentPage : ',
+        error
+      );
+    }
+  };
 }
