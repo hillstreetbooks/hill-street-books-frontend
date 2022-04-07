@@ -5,6 +5,8 @@ export const ROUTES = {
   ALL: '*',
   AUTHOR_PAGE: '/author/:authorId',
   AUTHOR_EDIT_PAGE: '/author/edit/:authorId',
+  ADMIN_DASHBOARD: '/admin/dashboard',
+  ADMIN_AUTHOR_PAGE: '/admin/author/:authorId',
   HOME: '/',
   LOGIN: '/login',
   PROFILE: '/profile',
@@ -14,6 +16,7 @@ export const ROUTES = {
 };
 
 export const API_ENDPOINTS = {
+  FETCH_AUTHORS: '/admin/fetch-authors',
   FETCH_AUTHOR_CONTENT: '/author/content',
   FETCH_AUTHOR_INFO: '/fetch-author-info',
   UPDATE_AUTHOR_CONTENT: '/author/update-content',
@@ -21,7 +24,10 @@ export const API_ENDPOINTS = {
   LOGIN: '/login',
   FORGOT_PASSWORD: '/forgot-password',
   RESET_PASSWORD: '/author/password-reset',
-  UPDATE_AUTHOR_INFO: '/update-author-info'
+  UPDATE_AUTHOR_INFO: '/update-author-info',
+  PUBLISH_AUTHOR_PAGE: '/admin/publish-author-page',
+  UNPUBLISH_AUTHOR_PAGE: '/admin/unpublish-author-page',
+  REMOVE_AUTHOR_PAGE: '/admin/remove-author-page'
 };
 
 export const LOGIN = {
