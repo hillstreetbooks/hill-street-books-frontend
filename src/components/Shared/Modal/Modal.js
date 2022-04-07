@@ -18,7 +18,7 @@ const style = {
   p: 4
 };
 
-const PopupModal = ({ show, toggleVisibility, title, message }) => {
+const PopupModal = ({ show, toggleVisibility, title, message, children }) => {
   return (
     <div>
       <Modal
@@ -54,12 +54,24 @@ const PopupModal = ({ show, toggleVisibility, title, message }) => {
                 X
               </div>
             </div>
-            <Typography id="transition-modal-title" variant="h6" component="h2">
-              {title}
-            </Typography>
-            <Typography id="transition-modal-description" sx={{ mt: 4, mb: 4 }}>
-              {message}
-            </Typography>
+            {title ? (
+              <Typography
+                id="transition-modal-title"
+                variant="h6"
+                component="h2"
+              >
+                {title}
+              </Typography>
+            ) : null}
+            {message ? (
+              <Typography
+                id="transition-modal-description"
+                sx={{ mt: 4, mb: 4 }}
+              >
+                {message}
+              </Typography>
+            ) : null}
+            {children}
           </Box>
         </Fade>
       </Modal>

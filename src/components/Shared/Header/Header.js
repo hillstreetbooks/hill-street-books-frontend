@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { signOut } from '../../../store';
@@ -16,7 +16,9 @@ const Header = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const showProfile =
-    location.pathname !== '/login' && location.pathname !== '/registration';
+    location.pathname !== '/login' &&
+    location.pathname !== '/registration' &&
+    location.pathname !== '/';
 
   useEffect(() => {
     if (userInfo && userInfo?.name) setWelcomeText(`Hi ${userInfo.name}`);
@@ -52,6 +54,11 @@ const Header = () => {
     navigate(`/author/edit/${userInfo._id}`);
   };
 
+  const navigateToAuthorsPage = () => {
+    toggleMenu(!menu);
+    navigate(`/admin/dashboard`);
+  };
+
   return (
     <div className="header-wrapper">
       <div className="logo-wrapper">
@@ -66,20 +73,34 @@ const Header = () => {
             <div className="details">{welcomeText}</div>
           </div>
           {menu ? (
-            <div className="menu">
-              <span className="menu-item" onClick={navigateToAuthorPage}>
-                Author Page
-              </span>
-              <span className="menu-item" onClick={navigateToAuthorEditPage}>
-                Edit Author Page
-              </span>
-              <span className="menu-item" onClick={navigateToProfile}>
-                View Profile
-              </span>
-              <span className="menu-item" onClick={handleSignOut}>
-                Sign out
-              </span>
-            </div>
+            userInfo && userInfo?.isAdmin ? (
+              <div className="menu">
+                <span className="menu-item" onClick={navigateToAuthorsPage}>
+                  View Authors
+                </span>
+                <span className="menu-item" onClick={navigateToProfile}>
+                  View Profile
+                </span>
+                <span className="menu-item" onClick={handleSignOut}>
+                  Sign out
+                </span>
+              </div>
+            ) : (
+              <div className="menu">
+                <span className="menu-item" onClick={navigateToAuthorPage}>
+                  Author Page
+                </span>
+                <span className="menu-item" onClick={navigateToAuthorEditPage}>
+                  Edit Author Page
+                </span>
+                <span className="menu-item" onClick={navigateToProfile}>
+                  View Profile
+                </span>
+                <span className="menu-item" onClick={handleSignOut}>
+                  Sign out
+                </span>
+              </div>
+            )
           ) : null}
         </div>
       ) : null}
@@ -87,4 +108,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default memo(Header);

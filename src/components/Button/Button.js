@@ -6,7 +6,7 @@ const Button = ({ buttonText, disabled, handleClick }) => {
   return (
     <button
       type="submit"
-      className="button"
+      className={`button ${disabled ? 'disabled' : ''}`}
       onClick={handleClick}
       disabled={disabled}
     >

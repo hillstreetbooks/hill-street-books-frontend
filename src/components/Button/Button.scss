@@ -17,6 +17,13 @@
   &:hover {
     box-shadow: 0 0 0 0.1rem currentColor;
   }
+  &.disabled {
+    color: $button-secondary-green;
+    cursor: initial;
+    &:hover {
+      box-shadow: none;
+    }
+  }
 }
 
 /* Button Styles - END */
