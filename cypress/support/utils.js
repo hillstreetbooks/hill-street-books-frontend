@@ -25,6 +25,19 @@ export class MockServiceCall {
   };
 
   /**
+   * This method validates the admin's credentials
+   */
+  static adminLogin = (cy) => {
+    cy.intercept(
+      {
+        method: 'POST',
+        url: URL_ENDPOINTS.LOGIN
+      },
+      MOCK_DATA.ADMIN_LOGIN
+    );
+  };
+
+  /**
    * This method inserts the author's details as a record in the database
    */
   static registerAuthor = (cy, username) => {
@@ -71,6 +84,44 @@ export class MockServiceCall {
         url: URL_ENDPOINTS.PASSWORD_RESET
       },
       data
+    );
+  };
+
+  /**
+   * This method fetches the Author's Info
+   */
+  static fetchAuthorInfo = (cy) => {
+    cy.intercept(
+      {
+        method: 'POST',
+        url: URL_ENDPOINTS.FETCH_AUTHOR_INFO
+      },
+      {
+        headers: {
+          'x-access-token':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjIwMDZlNzNiNWE4MTlmM2QzNmQ0ZmNjIiwidXNlcm5hbWUiOiJqb2huQHlvcG1haWwuY29tIiwiaWF0IjoxNjQ3NTUyNTI0fQ.Yjh5T16TRjytlpJ8l5gSRzKr-FWYtPVS_FTY1hAb2sM'
+        }
+      },
+      MOCK_DATA.AUTHOR_INFO
+    );
+  };
+
+  /**
+   * This method fetches the Authors
+   */
+  static fetchAuthors = (cy) => {
+    cy.intercept(
+      {
+        method: 'POST',
+        url: URL_ENDPOINTS.FETCH_AUTHORS
+      },
+      {
+        headers: {
+          'x-access-token':
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNjIwMDZlNzNiNWE4MTlmM2QzNmQ0ZmNjIiwidXNlcm5hbWUiOiJqb2huQHlvcG1haWwuY29tIiwiaWF0IjoxNjQ3NTUyNTI0fQ.Yjh5T16TRjytlpJ8l5gSRzKr-FWYtPVS_FTY1hAb2sM'
+        }
+      },
+      MOCK_DATA.AUTHOR_LIST
     );
   };
 }

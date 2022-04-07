@@ -119,6 +119,6 @@ const validAuthentication = (cy) => {
   cy.get('.login-wrapper form button.button').click();
   cy.url().should(
     'equal',
-    'http://localhost:3000/author/edit/62006e73b5a819f3d36d4fcc'
+    'http://localhost:3000/author/62006e73b5a819f3d36d4fcc'
   );
 };
