@@ -10,20 +10,23 @@ export default class AuthorService {
    * @param {*} name The Author's Name
    * @param {*} password The Author's Password
    * @param {*} confirm_password Re-enter the password
+   * @param {*} isAdmin Is an Admin
    * @returns {String} Returns a message
    */
   static registerAuthor = async (
     username,
     name,
     password,
-    confirm_password
+    confirm_password,
+    isAdmin
   ) => {
     try {
       const response = await Axios.post(API_ENDPOINTS.REGISTER_AUTHOR, {
         username: username.toLowerCase(),
         name,
         password,
-        confirm_password
+        confirm_password,
+        isAdmin
       });
       return response.data;
     } catch (error) {
@@ -95,6 +98,50 @@ export default class AuthorService {
       return response.data;
     } catch (error) {
       console.error('Error - AuthorService -> resetPassword : ', error);
+    }
+  };
+
+  /**
+   * @function fetchAuthorInfo
+   * @description This method fetches the Author's Info
+   * @param {string} username The Author's EmailID
+   * @returns {object} Returns an object which has author's details
+   */
+  static fetchAuthorInfo = async (username, token) => {
+    try {
+      const response = await Axios.post(
+        API_ENDPOINTS.FETCH_AUTHOR_INFO,
+        {
+          username
+        },
+        { headers: { 'x-access-token': token } }
+      );
+      return response.data;
+    } catch (error) {
+      console.error('Error - AuthorService -> fetchAuthorInfo : ', error);
+    }
+  };
+
+  /**
+   * @function updateAuthorInfo
+   * @description This method updates the Author's Info
+   * @param {string} username The Author's EmailID
+   * @param {string} name The Author's name
+   * @returns {object} Returns an object which has author's details
+   */
+  static updateAuthorInfo = async (username, name, token) => {
+    try {
+      const response = await Axios.post(
+        API_ENDPOINTS.UPDATE_AUTHOR_INFO,
+        {
+          username,
+          name
+        },
+        { headers: { 'x-access-token': token } }
+      );
+      return response.data;
+    } catch (error) {
+      console.error('Error - AuthorService -> updateAuthorInfo : ', error);
     }
   };
 }
