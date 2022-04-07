@@ -1,4 +1,5 @@
+import AdminService from './admin.service';
 import AuthorService from './author.service';
 import AuthorContentService from './authorcontent.service';
 
-export { AuthorService, AuthorContentService };
+export { AdminService, AuthorService, AuthorContentService };
