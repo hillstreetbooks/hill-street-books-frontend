@@ -1,9 +1,4 @@
-import React, {
-  forwardRef,
-  useImperativeHandle,
-  useEffect,
-  useState
-} from 'react';
+import React, { forwardRef, useImperativeHandle, useState } from 'react';
 import { Icon, TextField } from '@mui/material';
 import DateAdapter from '@mui/lab/AdapterMoment';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
@@ -40,21 +35,20 @@ const StepThree = forwardRef((props, ref) => {
 
   const updateBook = (event) => {
     const { name, value } = event.target;
+    console.log(name + ' ' + value);
     setBook({ ...book, [name]: value });
   };
 
   const addBook = () => {
     let bookList = [...books];
     let check = false;
-    bookList.forEach((item) => {
+    bookList.forEach((item, index) => {
       if (item.isbn === book.isbn) {
-        item = book;
+        bookList[index] = book;
         check = true;
       }
-      console.log(item);
     });
     if (!check) bookList.push(book);
-    console.log(bookList);
     dispatch(updateBooks(bookList));
     setShowModal(false);
   };
@@ -72,7 +66,6 @@ const StepThree = forwardRef((props, ref) => {
   };
 
   const _renderBooks = () => {
-    console.log('_renderBooks called');
     let bookList = [];
     books.forEach((item, index) => {
       bookList.push(
@@ -104,17 +97,12 @@ const StepThree = forwardRef((props, ref) => {
         </div>
       );
     });
-    console.log('bookList : ', bookList);
     return bookList;
   };
 
   const updateStore = (data) => dispatch(updateBooks(data));
 
   useImperativeHandle(ref, () => ({ data: books, updateStore }), [books]);
-
-  useEffect(() => {
-    console.log('books : ', books);
-  }, [books]);
 
   return (
     <>
