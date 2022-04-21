@@ -25,7 +25,85 @@
     height: 3rem;
     padding: 0 3rem;
     position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .notification-wrapper {
+      position: relative;
+      .notification-list {
+        top: 30px;
+        color: $black;
+        position: absolute;
+        list-style: none;
+        text-align: center;
+        width: 200px;
+        max-width: 200px;
+        margin-left: -93px;
+        font: bold 12px 'Open Sans Condensed', sans-serif;
+        //overflow: hidden;
+        -webkit-transition: max-height 0.4s linear;
+        -moz-transition: max-height 0.4s linear;
+        transition: max-height 0.4s linear;
+        box-shadow: 0 0 6px 3px rgba(0, 0, 0, 0.1);
+        .notification-tile {
+          width: 100%;
+          padding: 1rem;
+          background-color: rgb(255, 255, 255);
+          cursor: pointer;
+          &:not(:last-child) {
+            border-bottom: 1px solid rgb(154, 154, 154);
+          }
+          .details {
+            .name {
+              color: $green-primary;
+              font-size: $regular;
+              margin-bottom: 0.5rem;
+            }
+            .time {
+              color: rgb(161, 161, 161);
+              font-size: $small;
+            }
+          }
+          &:first-child {
+            border-radius: 3px 3px 0 0;
+            position: relative;
+            &:before {
+              content: '';
+              position: absolute;
+              width: 1px;
+              height: 1px;
+              border: 5px solid transparent;
+              border-bottom-color: $white;
+              left: 50%;
+              top: -10px;
+              margin-left: -4px;
+            }
+          }
+        }
+      }
+      svg {
+        color: $white;
+        font-size: $large;
+        cursor: pointer;
+      }
+      .notification-count {
+        position: absolute;
+        left: 21%;
+        top: -10px;
+        text-align: center;
+        border-radius: 7px;
+        width: 14px;
+        height: 14px;
+        background-color: #fcf801;
+        border: 1px solid #fcf801;
+        font-weight: 400;
+        color: $green-tertiary;
+        font-size: $small;
+        font-weight: 500;
+      }
+    }
     .menu-wrapper {
+      margin-left: 2rem;
       display: flex;
       width: 100%;
       height: 100%;
