@@ -111,8 +111,10 @@ const Author = ({ isAdmin }) => {
 
   const _renderVideos = () => {
     let videoList = [];
+    console.log(details);
     details.videos.forEach((video, index) => {
       if (video && video.value !== '') {
+        console.log(video.value);
         var url = new URL(video.value);
         var videoId = url.searchParams.get('v');
         videoList.push(
@@ -156,6 +158,7 @@ const Author = ({ isAdmin }) => {
     AuthorContentService.fetchContent(authorId, token)
       .then((response) => {
         if (response && Object.keys(response).length > 0) {
+          console.log(response);
           setDetails(response);
           updateLoader(false);
         } else if (isAdmin) {

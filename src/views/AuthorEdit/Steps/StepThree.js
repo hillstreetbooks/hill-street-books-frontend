@@ -35,20 +35,23 @@ const StepThree = forwardRef((props, ref) => {
 
   const updateBook = (event) => {
     const { name, value } = event.target;
-    console.log(name + ' ' + value);
     setBook({ ...book, [name]: value });
   };
 
   const addBook = () => {
     let bookList = [...books];
     let check = false;
-    bookList.forEach((item, index) => {
-      if (item.isbn === book.isbn) {
-        bookList[index] = book;
+    for (let i = 0; i < books.length; i++) {
+      if (books[i].isbn === book.isbn) {
+        bookList[i] = book;
         check = true;
       }
-    });
+    }
+
+    console.log(bookList);
+    console.log(!check);
     if (!check) bookList.push(book);
+    console.log(bookList);
     dispatch(updateBooks(bookList));
     setShowModal(false);
   };
@@ -106,6 +109,7 @@ const StepThree = forwardRef((props, ref) => {
 
   return (
     <>
+      {console.log(books)}
       <div className="book-list-wrapper">
         {!books.length ? (
           <div className="no-books" key={0}>

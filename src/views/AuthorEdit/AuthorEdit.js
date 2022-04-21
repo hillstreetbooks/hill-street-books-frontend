@@ -4,8 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { StepOne, StepTwo, StepThree, StepFour } from './Steps';
 import { Loader, MultiStep } from '../../components';
 import { AuthorContentService } from '../../services';
-import { updateAuthorContent } from '../../store';
-import { Navigate } from 'react-router-dom';
+import { updateAuthorContent, resetAuthorContent } from '../../store';
 
 const AuthorEdit = () => {
   const stepOne = useRef(null);
@@ -47,6 +46,7 @@ const AuthorEdit = () => {
     )
       .then((response) => {
         console.log(response);
+        dispatch(resetAuthorContent());
         updateLoader(false);
         navigate(`/author/${_id}`);
       })
