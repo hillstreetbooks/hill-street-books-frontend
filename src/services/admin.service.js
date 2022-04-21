@@ -93,4 +93,51 @@ export default class AdminService {
       );
     }
   };
+
+  /**
+   * @function removeAuthorContentPage
+   * @description This method fetches all the admin notifications
+   * @returns {Array} Returns an array of Notifications
+   */
+  static fetchAdminNotifications = async (token) => {
+    try {
+      const response = await Axios.post(
+        API_ENDPOINTS.FETCH_NOTIFICATIONS,
+        {},
+        { headers: { 'x-access-token': token } }
+      );
+      return response.data;
+    } catch (error) {
+      console.error(
+        'Error - AdminService -> fetchAdminNotifications : ',
+        error
+      );
+      return null;
+    }
+  };
+
+  /**
+   * @function removeAdminNotifications
+   * @description This method removes the notification once it is viewed by the admin
+   * @param {String} username Author's Username (Email)
+   * @returns {Array} Returns an array of Notifications
+   */
+  static removeAdminNotifications = async (username, token) => {
+    try {
+      const response = await Axios.post(
+        API_ENDPOINTS.REMOVE_NOTIFICATIONS,
+        {
+          username
+        },
+        { headers: { 'x-access-token': token } }
+      );
+      return response.data;
+    } catch (error) {
+      console.error(
+        'Error - AdminService -> removeAdminNotifications : ',
+        error
+      );
+      return null;
+    }
+  };
 }
