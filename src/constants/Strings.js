@@ -18,8 +18,10 @@ export const ROUTES = {
 export const API_ENDPOINTS = {
   FETCH_AUTHORS: '/admin/fetch-authors',
   FETCH_AUTHOR_CONTENT: '/author/content',
+  UPDATE_AUTHOR_BOOKS: '/author/update-books',
   FETCH_AUTHOR_INFO: '/fetch-author-info',
   UPDATE_AUTHOR_CONTENT: '/author/update-content',
+  UPDATE_AUTHOR_BOOKS: '/author/update-books',
   REGISTER_AUTHOR: '/register-author',
   LOGIN: '/login',
   FORGOT_PASSWORD: '/forgot-password',
@@ -27,7 +29,9 @@ export const API_ENDPOINTS = {
   UPDATE_AUTHOR_INFO: '/update-author-info',
   PUBLISH_AUTHOR_PAGE: '/admin/publish-author-page',
   UNPUBLISH_AUTHOR_PAGE: '/admin/unpublish-author-page',
-  REMOVE_AUTHOR_PAGE: '/admin/remove-author-page'
+  REMOVE_AUTHOR_PAGE: '/admin/remove-author-page',
+  FETCH_NOTIFICATIONS: '/admin/fetch-notifications',
+  REMOVE_NOTIFICATIONS: '/admin/remove-notification'
 };
 
 export const LOGIN = {
