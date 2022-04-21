@@ -1,4 +1,4 @@
-import { setInfo, signOut } from './reducers/userSlice';
+import { setAdminNotifications, setInfo, signOut } from './reducers/userSlice';
 import {
   resetUserDetails,
   updateUserDetails,
@@ -12,6 +12,7 @@ import {
 } from './reducers/authorcontentSlice';
 
 export {
+  setAdminNotifications,
   resetUserDetails,
   setInfo,
   signOut,

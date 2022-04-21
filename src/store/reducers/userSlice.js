@@ -4,7 +4,8 @@ import Cookies from 'js-cookie';
 export const userSlice = createSlice({
   name: 'user',
   initialState: {
-    info: Cookies.get('hsb_user') ? JSON.parse(Cookies.get('hsb_user')) : null
+    info: Cookies.get('hsb_user') ? JSON.parse(Cookies.get('hsb_user')) : null,
+    notifications: []
   },
   reducers: {
     setInfo: (state, action) => {
@@ -18,10 +19,13 @@ export const userSlice = createSlice({
     signOut: (state) => {
       Cookies.remove('hsb_user');
       state.info = null;
+    },
+    setAdminNotifications: (state, { payload }) => {
+      state.notifications = payload;
     }
   }
 });
 
-export const { setInfo, signOut } = userSlice.actions;
+export const { setAdminNotifications, setInfo, signOut } = userSlice.actions;
 
 export default userSlice.reducer;

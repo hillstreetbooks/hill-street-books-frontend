@@ -32,10 +32,12 @@ export const authorcontentSlice = createSlice({
     social_links: localStorage.getItem('social_links')
       ? JSON.parse(localStorage.getItem('social_links'))
       : social_links_initial_state,
-    books: [],
-    videos: localStorage.getItem('videos')
+    books: localStorage.getItem('videos')
       ? JSON.parse(localStorage.getItem('videos'))
-      : videos_initial_state
+      : videos_initial_state,
+    videos: localStorage.getItem('books')
+      ? JSON.parse(localStorage.getItem('books'))
+      : []
   },
   reducers: {
     updateUserDetails: (state, action) => {
@@ -63,18 +65,9 @@ export const authorcontentSlice = createSlice({
         ? JSON.parse(Cookies.get('hsb_user'))
         : null;
       if (hsb_user) {
-        const { username, token } = hsb_user;
-        state.books = action.payload || [];
-        AuthorContentService.updateContent(
-          username,
-          state.author_details,
-          state.social_links,
-          action.payload,
-          state.videos,
-          token
-        ).then((response) => {
-          console.log(response);
-        });
+        const books = action.payload;
+        localStorage.setItem('books', JSON.stringify(books));
+        state.books = books;
       }
     },
 
@@ -105,6 +98,7 @@ export const authorcontentSlice = createSlice({
         'social_links',
         JSON.stringify(social_links_initial_state)
       );
+      localStorage.setItem('books', JSON.stringify([]));
       localStorage.setItem('videos', JSON.stringify(videos_initial_state));
       state.author_details = author_details_initial_state;
       state.social_links = social_links_initial_state;
