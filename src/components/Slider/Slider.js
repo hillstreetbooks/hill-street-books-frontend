@@ -14,9 +14,9 @@ const Slider = ({
   children,
   spaceBetween,
   centeredSlides,
+  centerInsufficientSlides,
   initialSlide,
   slidesPerView,
-  draggable,
   navigation,
   pagination,
   loop
@@ -29,6 +29,7 @@ const Slider = ({
         slidesPerView={slidesPerView}
         spaceBetween={spaceBetween}
         navigation={navigation}
+        centerInsufficientSlides={centerInsufficientSlides}
         centeredSlides={centeredSlides}
         pagination={{ clickable: pagination }}
         loop={loop}
@@ -37,7 +38,15 @@ const Slider = ({
           0: {
             slidesPerView: 1
           },
-          501: {}
+          500: {
+            slidesPerView: 2
+          },
+          900: {
+            slidesPerView: 3
+          },
+          1100: {
+            slidesPerView: slidesPerView
+          }
         }}
       >
         {children}
