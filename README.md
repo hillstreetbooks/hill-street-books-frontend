@@ -70,7 +70,7 @@ Once you have everything installed, you need to do the following,
 
 1. Clone the repository.
    ```sh
-   git clone https://github.com/gokulramesh94/hill-street-books-frontend.git
+   git clone https://github.com/hillstreetbooks/hill-street-books-frontend.git
    ```
 2. Install dependencies.
    ```sh
