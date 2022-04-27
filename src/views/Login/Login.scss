@@ -1,0 +1,43 @@
+/* Login Styles - START */
+
+@import '../../styles/variables.scss';
+
+.login-wrapper {
+  height: calc(100vh - 6rem);
+  width: 100%;
+  .options-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    font-size: $regular17;
+    font-family: $font-karla;
+    margin: 1rem 0;
+    .remain-signed-in {
+      display: flex;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+    span.forgot-password {
+      cursor: pointer;
+    }
+  }
+}
+
+@media only screen and (max-width: $tab-big) {
+  .login-wrapper {
+    height: auto;
+  }
+}
+
+@media only screen and (max-width: $mobile-big) {
+  .login-wrapper {
+    height: auto;
+    .form-wrapper {
+      .form-content-wrapper {
+        padding: 6rem;
+      }
+    }
+  }
+}
+
+/* Login Styles - END */

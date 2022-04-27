@@ -1,0 +1,55 @@
+/* ImageEdit Styles - START */
+
+@import '../../styles/variables.scss';
+
+.image-edit-wrapper {
+  .cropped-image-wrapper {
+    width: 100%;
+    display: flex;
+    .box {
+      padding: 1rem 0;
+      width: 25%;
+      img {
+        width: 100%;
+        height: auto;
+      }
+    }
+    .title {
+      font-size: $h6;
+      font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+    .img-preview {
+      width: 50% !important;
+      height: auto !important;
+      img {
+        height: auto !important;
+        width: 100% !important;
+      }
+    }
+  }
+  .image-actions-wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+  input,
+  button {
+    padding: 1rem 2rem;
+    background-color: inherit;
+    color: $button-primary-green;
+    font-size: $regular15;
+    font-family: $font-karla;
+    letter-spacing: 0.75px;
+    border: 1px solid currentColor;
+    border-radius: 40px;
+    transition: box-shadow 0.2s ease-in-out;
+    cursor: pointer;
+    &:hover {
+      box-shadow: 0 0 0 0.1rem currentColor;
+    }
+  }
+}
+
+/* ImageEdit Styles - END */
