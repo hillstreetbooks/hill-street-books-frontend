@@ -2,6 +2,12 @@
   "name": "hill-street-books",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://hillstreetbooks.github.io/",
+  "author": {
+    "name": "Steven Sutherland",
+    "email": "info@sutherlandmediagroup.ca",
+    "url": "https://github.com/hillstreetbooks"
+  },
   "dependencies": {
     "@date-io/moment": "^2.13.1",
     "@emotion/react": "^11.8.2",
@@ -35,6 +41,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -b master -d build",
     "start": "react-scripts -r @cypress/instrument-cra start",
     "build": "react-scripts build",
     "test": "react-scripts test",
@@ -67,6 +75,7 @@
     "@cypress/instrument-cra": "^1.4.0",
     "@cypress/react": "^5.12.3",
     "cypress": "^9.5.0",
+    "gh-pages": "^3.2.3",
     "jsdoc": "^3.6.10",
     "node-sass": "^7.0.1"
   },
