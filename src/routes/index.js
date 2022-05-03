@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import { Footer, Header } from '../components';
 import {
   Author,
@@ -17,7 +17,7 @@ import { RequireAuth } from './middleware/auth';
 
 const routes = () => {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Header />
       <Routes>
         <Route path={ROUTES.HOME} exact element={<Login />} />
@@ -57,7 +57,7 @@ const routes = () => {
         <Route path={ROUTES.ALL} element={<Error />} />
       </Routes>
       <Footer />
-    </BrowserRouter>
+    </HashRouter>
   );
 };
 
