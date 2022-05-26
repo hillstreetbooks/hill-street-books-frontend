@@ -52,69 +52,35 @@ const Author = ({ isAdmin }) => {
 
   const _renderSlides = () => {
     let bookList = [];
-    for (let i = 0; i < 9; i++) {
+    details.books.forEach((item, index) => {
       bookList.push(
-        <SwiperSlide key={i}>
-          <div
-            className="book-wrapper"
-            onClick={() => viewBook(details.books[0])}
-          >
+        <SwiperSlide key={index}>
+          <div className="book-wrapper" onClick={() => viewBook(item)}>
             <div className="book-cover-wrapper">
-              <Image
-                source={details.books[0].bookCover}
-                altText={details.books[0].title}
-              />
+              <Image source={item.bookCover} altText={item.title} />
             </div>
             <div className="book-content">
               <div className="book-row">
-                <div className="title">{details.books[0].title}</div>
+                <div className="title">{item.title}</div>
               </div>
               <div className="book-row">
-                <div className="description">
-                  {details.books[0].description}
-                </div>
+                <div className="description">{item.description}</div>
               </div>
               <div className="book-row">
-                <div className="price">{details.books[0].price}</div>
+                <div className="price">{item.price}</div>
               </div>
             </div>
           </div>
         </SwiperSlide>
       );
-    }
-    // details.books.forEach((item, index) => {
-    //   //for (let i = 0; i < 3; i++) {
-    //   bookList.push(
-    //     <SwiperSlide key={index}>
-    //       <div className="book-wrapper" onClick={() => viewBook(item)}>
-    //         <div className="book-cover-wrapper">
-    //           <Image source={item.bookCover} altText={item.title} />
-    //         </div>
-    //         <div className="book-content">
-    //           <div className="book-row">
-    //             <div className="title">{item.title}</div>
-    //           </div>
-    //           <div className="book-row">
-    //             <div className="description">{item.description}</div>
-    //           </div>
-    //           <div className="book-row">
-    //             <div className="price">{item.price}</div>
-    //           </div>
-    //         </div>
-    //       </div>
-    //     </SwiperSlide>
-    //   );
-    //   //}
-    // });
+    });
     return bookList;
   };
 
   const _renderVideos = () => {
     let videoList = [];
-    console.log(details);
     details.videos.forEach((video, index) => {
       if (video && video.value !== '') {
-        console.log(video.value);
         var url = new URL(video.value);
         var videoId = url.searchParams.get('v');
         videoList.push(
@@ -130,11 +96,13 @@ const Author = ({ isAdmin }) => {
 
   const _renderSocialLinks = () => {
     let list = [];
-    list.push(
-      <a target="_blank" href={`mailto:${userInfo.username}`} key={0}>
-        <FontAwesomeIcon icon={faEnvelope} />
-      </a>
-    );
+    if (details && details.username) {
+      list.push(
+        <a target="_blank" href={`mailto:${details.username}`} key={0}>
+          <FontAwesomeIcon icon={faEnvelope} />
+        </a>
+      );
+    }
     Object.keys(details.social_links).forEach((item, index) => {
       if (details.social_links[item] !== '')
         list.push(
@@ -153,12 +121,10 @@ const Author = ({ isAdmin }) => {
   };
 
   useEffect(() => {
-    const { token } = userInfo;
     updateLoader(true);
-    AuthorContentService.fetchContent(authorId, token)
+    AuthorContentService.fetchContent(authorId)
       .then((response) => {
         if (response && Object.keys(response).length > 0) {
-          console.log(response);
           setDetails(response);
           updateLoader(false);
         } else if (isAdmin) {
@@ -210,11 +176,13 @@ const Author = ({ isAdmin }) => {
                 {_renderSlides()}
               </Slider>
             )}
-            <div className="heading">Watch the books come alive</div>
             {!details.videos.length ? (
-              <div className="no-books" key={0}>
-                No Videos to display
-              </div>
+              <>
+                <div className="heading">Watch the books come alive</div>
+                <div className="no-books" key={0}>
+                  No Videos to display
+                </div>
+              </>
             ) : (
               <div className="video-wrapper">{_renderVideos()}</div>
             )}

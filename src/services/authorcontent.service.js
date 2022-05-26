@@ -43,18 +43,13 @@ export default class AuthorContentService {
    * @function fetchContent
    * @description This method inserts the author's details as a record in the database
    * @param {String} _id The Author's ID
-   * @param {String} token The Author's token
    * @returns {String} Returns a message
    */
-  static fetchContent = async (_id, token) => {
+  static fetchContent = async (_id) => {
     try {
-      const response = await Axios.post(
-        API_ENDPOINTS.FETCH_AUTHOR_CONTENT,
-        {
-          _id: _id
-        },
-        { headers: { 'x-access-token': token } }
-      );
+      const response = await Axios.post(API_ENDPOINTS.FETCH_AUTHOR_CONTENT, {
+        _id: _id
+      });
       return response.data;
     } catch (error) {
       console.error('Error - AuthorContentService -> fetchContent : ', error);
